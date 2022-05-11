@@ -37,5 +37,10 @@ Route::get('/editplan/{id}', [App\Http\Controllers\WorksController::class, 'Edit
 Route::post('/changeplan/{id}', [App\Http\Controllers\WorksController::class, 'ChangePlan'])->name('ChangePlan');
 Route::post('/deleteplan/{id}', [App\Http\Controllers\WorksController::class, 'DeletePlan'])->name('DeletePlan');
 
-Route::get('/memberlist', [App\Http\Controllers\HomeController::class, 'MemberList'])->name('MemberList');
+Route::get('/memberlist', [App\Http\Controllers\MembersController::class, 'MemberList'])->name('MemberList');
+Route::post('/registmember', [App\Http\Controllers\MembersController::class, 'RegistMember'])->name('RegistMember');
+Route::get('/editmember/{id}', [App\Http\Controllers\MembersController::class, 'EditMember'])->name('EditMember');
+Route::post('/chengemember/{id}', [App\Http\Controllers\MembersController::class, 'ChangeMember'])->name('ChangeMember');
+Route::post('/deletemember/{id}', [App\Http\Controllers\MembersController::class, 'DeleteMember'])->name('DeleteMember');
+
 

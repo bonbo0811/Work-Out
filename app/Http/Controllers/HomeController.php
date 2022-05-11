@@ -31,14 +31,4 @@ class HomeController extends Controller
 
         return view('layouts.app',compact('projects','project_box'));
     }
-
-    // （メンバーコントローラー）メンバー一覧
-    public function MemberList()
-    {
-        $user = \AUTH::user();
-        $projects = Project::where('user_id',$user['id'])->orderby('schedule_end','asc')->paginate(15);
-        $project_box = 'on';
-
-        return view('workout.memberlist',compact('projects','project_box'));
-    }
 }
