@@ -21,15 +21,9 @@
                     @endif
                 </div>
                 <div class="mt-1 mb-3">
-                    <label for="" class="mb-2 bg-info rounded text-white">　メンバー　</label><br>
+                    <label for="" class="mb-2 bg-info rounded text-white">　リーダー　</label><br>
                     <div class="col-md-5">
-                        <p class="mb-0">{{'大久保賢人'}}</p>
-                    </div>
-                    <div class="col-md-5">
-                        <p class="mb-0">{{'サンプル１'}}</p>
-                    </div>
-                    <div class="col-md-5">
-                        <p class="mb-0">{{'サンプル２'}}</p>
+                        <p class="mb-0">{{$project -> member_name}}</p>
                     </div>
                 </div>
                 <div class="mt-1 mb-3">

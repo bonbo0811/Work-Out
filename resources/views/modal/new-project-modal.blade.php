@@ -19,12 +19,19 @@
                             <input type="date" name="schedule_start" required>　～　<input type="date" name="schedule_end" required>
                         </div>
                         <div class="mt-1 mb-3">
-                            <label for="" class="mb-2">メンバー</label><br>
-                            
+                            <label for="" class="mb-2">リーダー</label><br>
+                            <div>
+                                @foreach($members AS $member)
+                                    <div class="form-check form-check-inline mb-2">
+                                        <input class="form-check-input" type="radio" id="inlineCheckbox{{$member->id}}" name="member_id" value="{{ $member->id }}">
+                                        <label class="form-check-label" for="inlineCheckbox{{$member->id}}">{{ $member->name }}</label>
+                                    </div>
+                                @endforeach
+                            </div>
                         </div>
                         <div class="mt-1 mb-3">
                             <label for="" class="mb-2">{{ $name }} コメント</label>
-                            <textarea class="form-control"  placeholder="空欄でも可" name="memo" id="exampleFormControlTextarea1" rows="4"></textarea>
+                            <textarea class="form-control"  placeholder="空欄でもOK" name="memo" id="exampleFormControlTextarea1" rows="4"></textarea>
                         </div>
                     </div>
                     <div class="modal-footer">

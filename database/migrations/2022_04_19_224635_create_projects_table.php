@@ -20,10 +20,8 @@ class CreateProjectsTable extends Migration
             $table->date('schedule_end');
             $table->date('start')->nullable();
             $table->date('end')->nullable();
-            $table->text('member1');
-            $table->text('member2')->nullable();
-            $table->text('member3')->nullable();
-            $table->text('member4')->nullable();
+            $table->integer('member_id');
+            $table->text('member_name');
             $table->text('memo')->nullable();
             $table->integer('user_id');
             $table->timestamps();

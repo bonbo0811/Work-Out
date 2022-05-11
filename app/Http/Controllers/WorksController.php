@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Project;
 use App\Models\Work;
+use App\Models\Member;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
@@ -19,6 +20,9 @@ class WorksController extends Controller
 
         $work = work::where('project_id', $id)->where('status','<', 3)->get();
         // dd($work);
+
+        $user = \AUTH::user(); 
+        $members = member::where('user_id',$user['id'])->get();
 
         if(!$work -> isEmpty()){
             $project -> end = null;
@@ -41,8 +45,9 @@ class WorksController extends Controller
 
         $project_box = 'off';
 
-        return view('workout.home',compact('projects','workslists','project_box'));
+        return view('workout.home',compact('projects','workslists','project_box','members'));
     }
+
 
     // 選択プロジェクトの新規プランを作成
     public function RegistPlan(Request $request)
@@ -52,6 +57,7 @@ class WorksController extends Controller
             'name' => 'required | string | max: 100',
             'schedule_start'=> 'required | ',
             'schedule_end'=> 'required  | after_or_equal:schedule_start',
+            'member_id'=> 'required | ',
         ],
         // バリデーションメッセージ
         [
@@ -60,16 +66,22 @@ class WorksController extends Controller
             'schedule_start.required' => '開始日：入力は必須です。',
             'schedule_end.required' => '終了日：入力は必須です。',
             'schedule_end.after_or_equal' => '終了日：開始日より後に設定してください。',
+            'member_id.required' => '担当者を選択してください。',
         ]);
 
         $data = $request->all();
         // dd($data);
+
+        $member = member::find($data['member_id']);
+        // dd($member->name);
 
         $project_id = work::create
         ([
             'name' => $data['name'],
             'schedule_start' => $data['schedule_start'],
             'schedule_end' => $data['schedule_end'],
+            'member_id' => $data['member_id'],
+            'member_name' => $member->name,
             'memo' => $data['memo'],
             'user_id' => $data['user_id'],
             'project_id' => $data['project_id'],
@@ -79,6 +91,7 @@ class WorksController extends Controller
 
         return redirect()->route('SelectProject',['id'=>$id]);
     }
+
 
     //works開始
     public function StartPlan($id)
@@ -102,6 +115,7 @@ class WorksController extends Controller
 
         return redirect()->route('SelectProject',['id'=> $project->id ]);
     }
+
 
     // プラン終了
     public function EndPlan($id)
@@ -139,9 +153,12 @@ class WorksController extends Controller
         $projects = project::where('id', $plan -> project_id)->orderby('schedule_end','asc')->paginate(15);
         // dd($projects);
 
+        $user = \AUTH::user();
+        $members = member::where('user_id',$user['id'])->get();
+
         $project_box = 'off';
 
-        return view('workout.edit-plan',compact('plan','projects','project_box'));
+        return view('workout.edit-plan',compact('plan','projects','project_box','members'));
     }
 
 
@@ -153,6 +170,7 @@ class WorksController extends Controller
             'name' => 'required | string | max: 100',
             'schedule_start'=> 'required | ',
             'schedule_end'=> 'required  | after_or_equal:schedule_start',
+            'member_id'=> 'required | ',
         ],
         // バリデーションメッセージ
         [
@@ -161,15 +179,21 @@ class WorksController extends Controller
             'schedule_start.required' => '開始日：入力は必須です。',
             'schedule_end.required' => '狩猟日::入力は必須です。',
             'schedule_end.after_or_equal' => '終了日：開始日より後に設定してください。',
+            'member_id.required' => '担当者を選択してください。',
         ]);
 
         $work = work::find($id);
         $data = $request->all();
         // dd($data);
 
+        $member = member::find($data['member_id']);
+        // dd($member->name);
+
             $work -> name = $data['name'] ;
             $work -> schedule_start = $data['schedule_start'];
             $work -> schedule_end = $data['schedule_end'];
+            $work -> member_id = $data['member_id'];
+            $work -> member_name = $member->name;
             $work -> status = $data['status'];
             $work -> memo = $data['memo'];
 

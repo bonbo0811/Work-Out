@@ -11,7 +11,7 @@ class Project extends Model
 
     protected $fillable =
     ['name','schedule_start','schedule_end','schedule_end',
-     'start','end','memo','user_id'];
+     'start','end','member_id','member_name','memo','user_id'];
 
     use HasFactory;
 }

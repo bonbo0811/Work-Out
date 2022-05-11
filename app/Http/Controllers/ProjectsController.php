@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Project;
 use App\Models\Work;
+use App\Models\Member;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 
@@ -51,6 +52,7 @@ class ProjectsController extends Controller
             'name' => 'required  | max: 100',
             'schedule_start'=> 'required | ',
             'schedule_end'=> 'required | date | after_or_equal:schedule_start',
+            'member_id'=> 'required | ',
         ],
         // バリデーションメッセージ
         [
@@ -59,16 +61,22 @@ class ProjectsController extends Controller
             'schedule_start.required' => '開始日：入力は必須です。',
             'schedule_end.required' => '終了日：入力は必須です。',
             'schedule_end.after_or_equal' => '終了日：開始日より後に設定してください。',
+            'member_id.required' => '担当者を選択してください。',
         ]);
 
         $data = $request->all();
         // dd($data);
 
+        $member = member::find($data['member_id']);
+        // dd($member->name);
+
         $project_id = Project::create
         ([
             'name' => $data['name'],
             'schedule_start' => $data['schedule_start'],
-            'schedule_end' => $data['schedule_end'],
+            'schedule_end' => $data['schedule_end'],            
+            'member_id' => $data['member_id'],
+            'member_name' => $member->name,
             'memo' => $data['memo'],
             'user_id' => $data['user_id'],
         ]);
@@ -86,7 +94,10 @@ class ProjectsController extends Controller
         $project = project::find($id);
         $project_box = 'off';
 
-        return view('workout.edit-project',compact('projects','project','project_box'));
+        $user = \AUTH::user();
+        $members = member::where('user_id',$user['id'])->get();
+
+        return view('workout.edit-project',compact('projects','project','project_box','members'));
     }
 
 
@@ -98,6 +109,8 @@ class ProjectsController extends Controller
             'name' => 'required | string | max: 100',
             'schedule_start'=> 'required | ',
             'schedule_end'=> 'required  | after_or_equal:schedule_start',
+            'member.required' => 'メンバーを選択してください。',
+            'member_id'=> 'required | ',
         ],
         // バリデーションメッセージ
         [
@@ -106,15 +119,20 @@ class ProjectsController extends Controller
             'schedule_start.required' => '開始日：入力は必須です。',
             'schedule_end.required' => '終了日：入力は必須です。',
             'schedule_end.after_or_equal' => '終了日：開始日より後に設定してください。',
+            'member_id.required' => '担当者を選択してください。',
         ]);
 
         $project = project::find($id);
         $data = $request->all();
         // dd($data);
 
+        $member = member::find($data['member_id']);
+
             $project -> name = $data['name'];
             $project -> schedule_start = $data['schedule_start'];
             $project -> schedule_end = $data['schedule_end'];
+            $project -> member_id = $data['member_id'];
+            $project -> member_name = $member->name;
             $project -> memo = $data['memo'];
 
         $project -> save();
