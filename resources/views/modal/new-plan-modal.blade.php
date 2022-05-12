@@ -14,7 +14,7 @@
                     </div>
                     <div class="modal-body">
                         <div class="mt-1 mb-3">
-                            <label for="" class="mb-2">{{ $name }}名</label>
+                            <label for="" class="mb-2">{{ $name }}名 <span class="small text-danger"> 必須</span></label>
                             <input type="text" class="form-control form-control-sm" name="name" required>
                                 @if($errors->has('name'))
                                     @foreach($errors->get('name') as $message)
@@ -23,7 +23,7 @@
                                 @endif 
                         </div>
                         <div class="mt-1 mb-3">
-                            <label for="" class="mb-2">スケジュール</label><br>
+                            <label for="" class="mb-2">スケジュール <span class="small text-danger"> 必須</span></label><br>
                             <input type="date" name="schedule_start" required>　～　<input type="date" name="schedule_end" required>
                                 @if($errors->has('schedule_start'))
                                     @foreach($errors->get('schedule_start') as $message)
@@ -38,7 +38,7 @@
                                 @endif 
                         </div>
                         <div class="mt-1 mb-3">
-                            <label for="" class="mb-2">担当者</label><br>
+                            <label for="" class="mb-2">担当者 <span class="small text-danger"> 必須</span></label><br>
                             <div>
                                 @foreach($members AS $member)
                                     <div class="form-check form-check-inline mb-2">

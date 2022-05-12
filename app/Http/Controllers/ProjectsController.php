@@ -47,25 +47,25 @@ class ProjectsController extends Controller
     // 新規プロジェクト登録
         public function RegistProject(REQUEST $request)
         {
-        // バリデーション
-        $validate = $request ->validate([
-            'name' => 'required  | max: 100',
-            'schedule_start'=> 'required | ',
-            'schedule_end'=> 'required | date | after_or_equal:schedule_start',
-            'member_id'=> 'required | ',
-        ],
-        // バリデーションメッセージ
-        [
-            'name.required' => '入力は必須です。',
-            'name.max' => '入力は100文字までです。',
-            'schedule_start.required' => '開始日：入力は必須です。',
-            'schedule_end.required' => '終了日：入力は必須です。',
-            'schedule_end.after_or_equal' => '終了日：開始日より後に設定してください。',
-            'member_id.required' => '担当者を選択してください。',
-        ]);
+        // // バリデーション
+        // $validate = $request ->validate([
+        //     'name' => 'required  | max: 100',
+        //     'schedule_start'=> 'required | ',
+        //     'schedule_end'=> 'required | date | after_or_equal:schedule_start',
+        //     'member1'=> 'required | ',
+        // ],
+        // // バリデーションメッセージ
+        // [
+        //     'name.required' => '入力は必須です。',
+        //     'name.max' => '入力は100文字までです。',
+        //     'schedule_start.required' => '開始日：入力は必須です。',
+        //     'schedule_end.required' => '終了日：入力は必須です。',
+        //     'schedule_end.after_or_equal' => '終了日：開始日より後に設定してください。',
+        //     'member1.required' => '担当者を選択してください。',
+        // ]);
 
         $data = $request->all();
-        // dd($data);
+        dd($data);
 
         $member = member::find($data['member_id']);
         // dd($member->name);

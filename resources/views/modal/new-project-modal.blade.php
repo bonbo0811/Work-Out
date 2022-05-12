@@ -11,23 +11,29 @@
                     </div>
                     <div class="modal-body">
                         <div class="mt-1 mb-3">
-                            <label for="" class="mb-2">{{ $name }}名</label>
+                            <label for="" class="mb-2">{{ $name }}名 <span class="small text-danger"> 必須</span></label>
                             <input type="text" class="form-control form-control-sm" name="name" required>
                         </div>
                         <div class="mt-1 mb-3">
-                            <label for="" class="mb-2">スケジュール</label><br>
+                            <label for="" class="mb-2">スケジュール <span class="small text-danger"> 必須</span></label><br>
                             <input type="date" name="schedule_start" required>　～　<input type="date" name="schedule_end" required>
                         </div>
                         <div class="mt-1 mb-3">
-                            <label for="" class="mb-2">リーダー</label><br>
-                            <div>
-                                @foreach($members AS $member)
-                                    <div class="form-check form-check-inline mb-2">
-                                        <input class="form-check-input" type="radio" id="inlineCheckbox{{$member->id}}" name="member_id" value="{{ $member->id }}">
-                                        <label class="form-check-label" for="inlineCheckbox{{$member->id}}">{{ $member->name }}</label>
-                                    </div>
-                                @endforeach
-                            </div>
+                            @for($i = 1; $i < 4; $i++)
+                                <label for="" class="mb-1">メンバー{{ $i }} 
+                                    @if($i == 1)
+                                        <span class="small text-danger"> 必須</span>
+                                    @endif
+                                </label><br>
+                                <div>
+                                    <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="member{{ $i }}">
+                                        <option selected value=" ">未選択</option>
+                                        @foreach($members AS $member)
+                                            <option value="{{ $member->id }}">{{ $member->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            @endfor
                         </div>
                         <div class="mt-1 mb-3">
                             <label for="" class="mb-2">{{ $name }} コメント</label>
