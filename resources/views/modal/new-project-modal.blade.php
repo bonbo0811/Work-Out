@@ -17,17 +17,19 @@
                         <div class="mt-1 mb-3">
                             <label for="" class="mb-2">スケジュール</label><br>
                             <input type="date" name="schedule_start" required>　～　<input type="date" name="schedule_end" required>
-                        </div>
+                        </div  class="row">
                         <div class="mt-1 mb-3">
-                            <label for="" class="mb-2">リーダー</label><br>
-                            <div>
-                                @foreach($members AS $member)
-                                    <div class="form-check form-check-inline mb-2">
-                                        <input class="form-check-input" type="radio" id="inlineCheckbox{{$member->id}}" name="member_id" value="{{ $member->id }}">
-                                        <label class="form-check-label" for="inlineCheckbox{{$member->id}}">{{ $member->name }}</label>
-                                    </div>
-                                @endforeach
-                            </div>
+                            @for($i = 1; $i < 5; $i++ )
+                                <div class="col-xs-3">
+                                <label for="" class="mb-2">メンバー{{$i}}</label><br>
+                                    <select class="form-select" aria-label="Default select example" name="member{{ $i }}">
+                                        <option selected>未選択</option>
+                                        @foreach($members AS $member)
+                                            <option name="member{{ $i }}" value="{{ $member->id }}">{{ $member->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            @endfor
                         </div>
                         <div class="mt-1 mb-3">
                             <label for="" class="mb-2">{{ $name }} コメント</label>
