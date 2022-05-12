@@ -21,27 +21,28 @@ class WorksController extends Controller
         $work = work::where('project_id', $id)->where('status','<', 3)->get();
         // dd($work);
 
-        $user = \AUTH::user(); 
-        $members = member::where('user_id',$user['id'])->get();
-
         if(!$work -> isEmpty()){
             $project -> end = null;
             $project -> save();
         }
+
+        $work2 = work::where('project_id', $id)->where('status','>', 1)->get();
+        // dd($work2);
+
+        if($work2 -> isEmpty()){
+            $project -> start = null;
+            $project -> save();
+        }
+
+
+        $user = \AUTH::user(); 
+        $members = member::where('user_id',$user['id'])->get();
 
         $projects = project::where('id',$id)->orderby('schedule_end','asc')->paginate(15);
         // dd($projects);
         
         $workslists = work::where('project_id',$id)->orderby('schedule_end','asc')->paginate(15);
         // dd($workslists);
-
-        $work = work::where('project_id', $id)->where('status','<', 3)->get();
-        // dd($work);
-
-        if(!$work -> isEmpty()){
-            $project -> end = null;
-            $project -> save();
-        }
 
         $project_box = 'off';
 
