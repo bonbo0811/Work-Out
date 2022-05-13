@@ -47,36 +47,58 @@ class ProjectsController extends Controller
     // 新規プロジェクト登録
         public function RegistProject(REQUEST $request)
         {
-        // // バリデーション
-        // $validate = $request ->validate([
-        //     'name' => 'required  | max: 100',
-        //     'schedule_start'=> 'required | ',
-        //     'schedule_end'=> 'required | date | after_or_equal:schedule_start',
-        //     'member1'=> 'required | ',
-        // ],
-        // // バリデーションメッセージ
-        // [
-        //     'name.required' => '入力は必須です。',
-        //     'name.max' => '入力は100文字までです。',
-        //     'schedule_start.required' => '開始日：入力は必須です。',
-        //     'schedule_end.required' => '終了日：入力は必須です。',
-        //     'schedule_end.after_or_equal' => '終了日：開始日より後に設定してください。',
-        //     'member1.required' => '担当者を選択してください。',
-        // ]);
+        // バリデーション
+        $validate = $request ->validate([
+            'name' => 'required  | max: 100',
+            'schedule_start'=> 'required | ',
+            'schedule_end'=> 'required | date | after_or_equal:schedule_start',
+            'member1'=> 'required | ',
+        ],
+        // バリデーションメッセージ
+        [
+            'name.required' => '入力は必須です。',
+            'name.max' => '入力は100文字までです。',
+            'schedule_start.required' => '開始日：入力は必須です。',
+            'schedule_end.required' => '終了日：入力は必須です。',
+            'schedule_end.after_or_equal' => '終了日：開始日より後に設定してください。',
+            'member1.required' => 'メンバー1を選択してください。',
+        ]);
 
         $data = $request->all();
-        dd($data);
+        // dd($data);
 
-        $member = member::find($data['member_id']);
-        // dd($member->name);
+        $member1 = member::find($data['member1']);
+        // dd($member1->name);
+
+        if(!$data['member2'] == null)
+        {
+            $member2 = member::find($data['member2']);
+            // dd($member2->name);
+            $member2name = $member2->name;
+        }else{
+            $member2name = null;
+        }
+
+        if(!$data['member3'] == null)
+        {
+            $member3 = member::find($data['member3']);
+            // dd($member3->name);
+            $member3name = $member3->name;
+        }else{
+            $member3name = null;
+        }
 
         $project_id = Project::create
         ([
             'name' => $data['name'],
             'schedule_start' => $data['schedule_start'],
             'schedule_end' => $data['schedule_end'],            
-            'member_id' => $data['member_id'],
-            'member_name' => $member->name,
+            'member1' => $data['member1'],
+            'member1_name' => $member1->name,
+            'member2' => $data['member2'],
+            'member2_name' => $member2name,
+            'member3' => $data['member3'],
+            'member3_name' => $member3name,
             'memo' => $data['memo'],
             'user_id' => $data['user_id'],
         ]);
@@ -110,7 +132,7 @@ class ProjectsController extends Controller
             'schedule_start'=> 'required | ',
             'schedule_end'=> 'required  | after_or_equal:schedule_start',
             'member.required' => 'メンバーを選択してください。',
-            'member_id'=> 'required | ',
+            'member1'=> 'required | ',
         ],
         // バリデーションメッセージ
         [
@@ -119,20 +141,42 @@ class ProjectsController extends Controller
             'schedule_start.required' => '開始日：入力は必須です。',
             'schedule_end.required' => '終了日：入力は必須です。',
             'schedule_end.after_or_equal' => '終了日：開始日より後に設定してください。',
-            'member_id.required' => '担当者を選択してください。',
+            'member1.required' => 'メンバー1を選択してください。',
         ]);
 
         $project = project::find($id);
         $data = $request->all();
         // dd($data);
 
-        $member = member::find($data['member_id']);
+        $member1 = member::find($data['member1']);
+
+        if(!$data['member2'] == null)
+        {
+            $member2 = member::find($data['member2']);
+            // dd($member2->name);
+            $member2name = $member2->name;
+        }else{
+            $member2name = null;
+        }
+
+        if(!$data['member3'] == null)
+        {
+            $member3 = member::find($data['member3']);
+            // dd($member3->name);
+            $member3name = $member3->name;
+        }else{
+            $member3name = null;
+        }
 
             $project -> name = $data['name'];
             $project -> schedule_start = $data['schedule_start'];
             $project -> schedule_end = $data['schedule_end'];
-            $project -> member_id = $data['member_id'];
-            $project -> member_name = $member->name;
+            $project -> member1 = $data['member1'];
+            $project -> member1_name = $member1->name;
+            $project -> member2 = $data['member2'];
+            $project -> member2_name = $member2name;
+            $project -> member3 = $data['member3'];
+            $project -> member3_name = $member3name;
             $project -> memo = $data['memo'];
 
         $project -> save();

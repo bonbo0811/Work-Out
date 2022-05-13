@@ -20,7 +20,7 @@
                         </div>
                         <div class="mt-1 mb-3">
                             @for($i = 1; $i < 4; $i++)
-                                <label for="" class="mb-1">メンバー{{ $i }} 
+                                <label for="" class="mt-1">メンバー{{ $i }} 
                                     @if($i == 1)
                                         <span class="small text-danger"> 必須</span>
                                     @endif

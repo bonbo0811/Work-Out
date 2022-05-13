@@ -58,7 +58,7 @@ class WorksController extends Controller
             'name' => 'required | string | max: 100',
             'schedule_start'=> 'required | ',
             'schedule_end'=> 'required  | after_or_equal:schedule_start',
-            'member_id'=> 'required | ',
+            'member1'=> 'required | ',
         ],
         // バリデーションメッセージ
         [
@@ -67,22 +67,44 @@ class WorksController extends Controller
             'schedule_start.required' => '開始日：入力は必須です。',
             'schedule_end.required' => '終了日：入力は必須です。',
             'schedule_end.after_or_equal' => '終了日：開始日より後に設定してください。',
-            'member_id.required' => '担当者を選択してください。',
+            'member1.required' => '担当者を選択してください。',
         ]);
 
         $data = $request->all();
         // dd($data);
 
-        $member = member::find($data['member_id']);
-        // dd($member->name);
+        $member1 = member::find($data['member1']);
+        // dd($member1->name);
+
+        if(!$data['member2'] == null)
+        {
+            $member2 = member::find($data['member2']);
+            // dd($member2->name);
+            $member2name = $member2->name;
+        }else{
+            $member2name = null;
+        }
+
+        if(!$data['member3'] == null)
+        {
+            $member3 = member::find($data['member3']);
+            // dd($member3->name);
+            $member3name = $member3->name;
+        }else{
+            $member3name = null;
+        }
 
         $project_id = work::create
         ([
             'name' => $data['name'],
             'schedule_start' => $data['schedule_start'],
             'schedule_end' => $data['schedule_end'],
-            'member_id' => $data['member_id'],
-            'member_name' => $member->name,
+            'member1' => $data['member1'],
+            'member1_name' => $member1->name,
+            'member2' => $data['member2'],
+            'member2_name' => $member2name,
+            'member3' => $data['member3'],
+            'member3_name' => $member3name,
             'memo' => $data['memo'],
             'user_id' => $data['user_id'],
             'project_id' => $data['project_id'],
@@ -171,7 +193,7 @@ class WorksController extends Controller
             'name' => 'required | string | max: 100',
             'schedule_start'=> 'required | ',
             'schedule_end'=> 'required  | after_or_equal:schedule_start',
-            'member_id'=> 'required | ',
+            'member1'=> 'required | ',
         ],
         // バリデーションメッセージ
         [
@@ -180,21 +202,43 @@ class WorksController extends Controller
             'schedule_start.required' => '開始日：入力は必須です。',
             'schedule_end.required' => '狩猟日::入力は必須です。',
             'schedule_end.after_or_equal' => '終了日：開始日より後に設定してください。',
-            'member_id.required' => '担当者を選択してください。',
+            'member1.required' => 'メンバー1を選択してください。',
         ]);
 
         $work = work::find($id);
         $data = $request->all();
         // dd($data);
 
-        $member = member::find($data['member_id']);
+        $member1 = member::find($data['member1']);
         // dd($member->name);
+
+        if(!$data['member2'] == null)
+        {
+            $member2 = member::find($data['member2']);
+            // dd($member2->name);
+            $member2name = $member2->name;
+        }else{
+            $member2name = null;
+        }
+
+        if(!$data['member3'] == null)
+        {
+            $member3 = member::find($data['member3']);
+            // dd($member3->name);
+            $member3name = $member3->name;
+        }else{
+            $member3name = null;
+        }
 
             $work -> name = $data['name'] ;
             $work -> schedule_start = $data['schedule_start'];
             $work -> schedule_end = $data['schedule_end'];
-            $work -> member_id = $data['member_id'];
-            $work -> member_name = $member->name;
+            $work -> member1 = $data['member1'];
+            $work -> member1_name = $member1->name;
+            $work -> member2 = $data['member2'];
+            $work -> member2_name = $member2name;
+            $work -> member3 = $data['member3'];
+            $work -> member3_name = $member3name;
             $work -> status = $data['status'];
             $work -> memo = $data['memo'];
 

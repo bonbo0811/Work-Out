@@ -27,9 +27,11 @@
                     @endif
                 </div>
                 <div class="mt-1 mb-3">
-                    <label for="" class="mb-2 bg-info rounded text-white">　担当者　</label><br>
+                    <label for="" class="mb-2 bg-info rounded text-white">　メンバー　</label><br>
                     <div class="col-md-5">
-                        <p class="mb-0">{{$workslist -> member_name}}</p>
+                        <p class="mb-0">{{$workslist -> member1_name}}</p>
+                        <p class="mb-0">{{$workslist -> member2_name}}</p>
+                        <p class="mb-0">{{$workslist -> member3_name}}</p>
                     </div>
                 </div>
                 <div class="mt-1 mb-3">

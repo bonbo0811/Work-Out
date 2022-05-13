@@ -21,10 +21,10 @@
                     @endif
                 </div>
                 <div class="mt-1 mb-3">
-                    <label for="" class="mb-2 bg-info rounded text-white">　リーダー　</label><br>
-                    <div class="col-md-5">
-                        <p class="mb-0">{{$project -> member_name}}</p>
-                    </div>
+                    <label for="" class="mb-2 bg-info rounded text-white">　メンバー　</label><br>
+                        <p class="mb-0">{{$project -> member1_name}}</p>
+                        <p class="mb-0">{{$project -> member2_name}}</p>
+                        <p class="mb-0">{{$project -> member3_name}}</p>
                 </div>
                 <div class="mt-1 mb-3">
                     <label for="" class="mb-2 bg-info rounded text-white">　コメント　</label><br>

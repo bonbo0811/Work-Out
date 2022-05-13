@@ -43,15 +43,40 @@
                             @endif 
                     </div>
                     <div class="mt-1 mb-3">
-                        <label for="" class="mb-2">リーダー</label><br>
-                            <div>
+                        <label for="" class="mt-1">メンバー1
+                                <span class="small text-danger"> 必須</span>
+                        </label><br>
+                        <div>
+                            <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="member1">
+                                <option selected value=" ">未選択</option>
                                 @foreach($members AS $member)
-                                    <div class="form-check form-check-inline mb-2">
-                                        <input class="form-check-input" type="radio" id="inlineCheckbox{{$member->id}}" name="member_id" value="{{$member->id}}" {{ $member->id  == $project -> member_id ? 'checked' : '' }}>
-                                        <label class="form-check-label" for="inlineCheckbox{{$member->id}}">{{ $member->name }}</label>
-                                    </div>
+                                    <option value="{{ $member->id }}"{{ old('member1', $project -> member1) === $member->id ? 'selected' : '' }}>{{ $member->name }}</option>
                                 @endforeach
-                            </div>
+                            </select>
+                                @if($errors->has('member1'))
+                                    @foreach($errors->get('member1') as $message)
+                                        <p class="small text-danger">→ {{ $message }} </p>
+                                    @endforeach
+                                @endif 
+                        </div>
+                        <label for="" class="mt-1">メンバー2</label><br>
+                        <div>
+                            <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="member2">
+                                <option selected value=" ">未選択</option>
+                                @foreach($members AS $member)
+                                    <option value="{{ $member->id }}"{{ old('member2', $project -> member2) === $member->id ? 'selected' : '' }}>{{ $member->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <label for="" class="mt-1">メンバー3</label><br>
+                        <div>
+                            <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="member3">
+                                <option selected value=" ">未選択</option>
+                                @foreach($members AS $member)
+                                    <option value="{{ $member->id }}"{{ old('member3', $project -> member3) === $member->id ? 'selected' : '' }}>{{ $member->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
                     </div>
                     <div class="mt-1 mb-4">
                         <label for="" class="mb-2 form-label">コメント</label>
