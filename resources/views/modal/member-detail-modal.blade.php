@@ -8,7 +8,7 @@
             </div>
             <div class="modal-body">
                 <div class="mt-1 mb-3">
-                    <label for="" class="mb-2 bg-info rounded text-white">　メンバー　</label><br>
+                    <label for="" class="mb-2 bg-info rounded text-white">　名前　</label><br>
                     {{$member->name}}
                 </div>
             </div>

@@ -14,7 +14,7 @@
                     </div>
                     <div class="modal-body">
                         <div class="mt-1 mb-3">
-                            <label for="" class="mb-2">{{ $name }}名</label>
+                            <label for="" class="mb-2">{{ $name }}名 <span class="small text-danger"> 必須</span></label>
                             <input type="text" class="form-control form-control-sm" name="name" required>
                                 @if($errors->has('name'))
                                     @foreach($errors->get('name') as $message)
@@ -23,7 +23,7 @@
                                 @endif 
                         </div>
                         <div class="mt-1 mb-3">
-                            <label for="" class="mb-2">スケジュール</label><br>
+                            <label for="" class="mb-2">スケジュール <span class="small text-danger"> 必須</span></label><br>
                             <input type="date" name="schedule_start" required>　～　<input type="date" name="schedule_end" required>
                                 @if($errors->has('schedule_start'))
                                     @foreach($errors->get('schedule_start') as $message)
@@ -38,12 +38,60 @@
                                 @endif 
                         </div>
                         <div class="mt-1 mb-3">
-                            <label for="" class="mb-2">メンバー</label><br>
-                            
+                            <label for="" class="mt-1">メンバー1<span class="small text-danger"> 必須</span></label><br>
+                                <div>
+                                    <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="member1">
+                                        @foreach($projects AS $project)
+                                            <option selected value=" ">未選択</option>
+                                            <option value="{{ $project->member1 }}">{{ $project->member1_name }}</option>
+                                            @if(!$project->member2 == null)
+                                            <option value="{{ $project->member2 }}">{{ $project->member2_name }}</option>
+                                            @endif
+                                            @if(!$project->member3 == null)
+                                            <option value="{{ $project->member3 }}">{{ $project->member3_name }}</option>
+                                            @endif
+                                        @endforeach
+                                    </select>
+                                        @if($errors->has('member1'))
+                                            @foreach($errors->get('member1') as $message)
+                                                <p class="small text-danger">→ {{ $message }} </p>
+                                            @endforeach
+                                        @endif 
+                                </div>
+                            <label for="" class="mt-1">メンバー2</label><br>
+                                <div>
+                                    <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="member2">
+                                        @foreach($projects AS $project)
+                                            <option selected value=" ">未選択</option>
+                                            <option value="{{ $project->member1 }}">{{ $project->member1_name }}</option>
+                                            @if(!$project->member2 == null)
+                                            <option value="{{ $project->member2 }}">{{ $project->member2_name }}</option>
+                                            @endif
+                                            @if(!$project->member3 == null)
+                                            <option value="{{ $project->member3 }}">{{ $project->member3_name }}</option>
+                                            @endif
+                                        @endforeach
+                                    </select>
+                                </div>
+                            <label for="" class="mt-1">メンバー3</label><br>
+                                <div>
+                                    <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="member3">
+                                        @foreach($projects AS $project)
+                                            <option selected value=" ">未選択</option>
+                                            <option value="{{ $project->member1 }}">{{ $project->member1_name }}</option>
+                                            @if(!$project->member2 == null)
+                                            <option value="{{ $project->member2 }}">{{ $project->member2_name }}</option>
+                                            @endif
+                                            @if(!$project->member3 == null)
+                                            <option value="{{ $project->member3 }}">{{ $project->member3_name }}</option>
+                                            @endif
+                                        @endforeach
+                                    </select>
+                                </div>
                         </div>
                         <div class="mt-1 mb-3">
                             <label for="" class="mb-2">{{ $name }} コメント</label>
-                            <textarea class="form-control"  placeholder="空欄でも可" name="memo" id="exampleFormControlTextarea1" rows="4"></textarea>
+                            <textarea class="form-control" placeholder="空欄でもOK" name="memo" id="exampleFormControlTextarea1" rows="4"></textarea>
                         </div>
                     </div>
                     <div class="modal-footer">

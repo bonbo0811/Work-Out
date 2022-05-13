@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Project;
 use App\Models\Work;
+use App\Models\Member;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
@@ -25,24 +26,29 @@ class WorksController extends Controller
             $project -> save();
         }
 
+        $work2 = work::where('project_id', $id)->where('status','>', 1)->get();
+        // dd($work2);
+
+        if($work2 -> isEmpty()){
+            $project -> start = null;
+            $project -> save();
+        }
+
+
+        $user = \AUTH::user(); 
+        $members = member::where('user_id',$user['id'])->get();
+
         $projects = project::where('id',$id)->orderby('schedule_end','asc')->paginate(15);
         // dd($projects);
         
         $workslists = work::where('project_id',$id)->orderby('schedule_end','asc')->paginate(15);
         // dd($workslists);
 
-        $work = work::where('project_id', $id)->where('status','<', 3)->get();
-        // dd($work);
-
-        if(!$work -> isEmpty()){
-            $project -> end = null;
-            $project -> save();
-        }
-
         $project_box = 'off';
 
-        return view('workout.home',compact('projects','workslists','project_box'));
+        return view('workout.home',compact('projects','workslists','project_box','members'));
     }
+
 
     // 選択プロジェクトの新規プランを作成
     public function RegistPlan(Request $request)
@@ -52,6 +58,7 @@ class WorksController extends Controller
             'name' => 'required | string | max: 100',
             'schedule_start'=> 'required | ',
             'schedule_end'=> 'required  | after_or_equal:schedule_start',
+            'member1'=> 'required | ',
         ],
         // バリデーションメッセージ
         [
@@ -60,16 +67,44 @@ class WorksController extends Controller
             'schedule_start.required' => '開始日：入力は必須です。',
             'schedule_end.required' => '終了日：入力は必須です。',
             'schedule_end.after_or_equal' => '終了日：開始日より後に設定してください。',
+            'member1.required' => '担当者を選択してください。',
         ]);
 
         $data = $request->all();
         // dd($data);
+
+        $member1 = member::find($data['member1']);
+        // dd($member1->name);
+
+        if(!$data['member2'] == null)
+        {
+            $member2 = member::find($data['member2']);
+            // dd($member2->name);
+            $member2name = $member2->name;
+        }else{
+            $member2name = null;
+        }
+
+        if(!$data['member3'] == null)
+        {
+            $member3 = member::find($data['member3']);
+            // dd($member3->name);
+            $member3name = $member3->name;
+        }else{
+            $member3name = null;
+        }
 
         $project_id = work::create
         ([
             'name' => $data['name'],
             'schedule_start' => $data['schedule_start'],
             'schedule_end' => $data['schedule_end'],
+            'member1' => $data['member1'],
+            'member1_name' => $member1->name,
+            'member2' => $data['member2'],
+            'member2_name' => $member2name,
+            'member3' => $data['member3'],
+            'member3_name' => $member3name,
             'memo' => $data['memo'],
             'user_id' => $data['user_id'],
             'project_id' => $data['project_id'],
@@ -79,6 +114,7 @@ class WorksController extends Controller
 
         return redirect()->route('SelectProject',['id'=>$id]);
     }
+
 
     //works開始
     public function StartPlan($id)
@@ -102,6 +138,7 @@ class WorksController extends Controller
 
         return redirect()->route('SelectProject',['id'=> $project->id ]);
     }
+
 
     // プラン終了
     public function EndPlan($id)
@@ -139,9 +176,12 @@ class WorksController extends Controller
         $projects = project::where('id', $plan -> project_id)->orderby('schedule_end','asc')->paginate(15);
         // dd($projects);
 
+        $user = \AUTH::user();
+        $members = member::where('user_id',$user['id'])->get();
+
         $project_box = 'off';
 
-        return view('workout.edit-plan',compact('plan','projects','project_box'));
+        return view('workout.edit-plan',compact('plan','projects','project_box','members'));
     }
 
 
@@ -153,6 +193,7 @@ class WorksController extends Controller
             'name' => 'required | string | max: 100',
             'schedule_start'=> 'required | ',
             'schedule_end'=> 'required  | after_or_equal:schedule_start',
+            'member1'=> 'required | ',
         ],
         // バリデーションメッセージ
         [
@@ -161,15 +202,43 @@ class WorksController extends Controller
             'schedule_start.required' => '開始日：入力は必須です。',
             'schedule_end.required' => '狩猟日::入力は必須です。',
             'schedule_end.after_or_equal' => '終了日：開始日より後に設定してください。',
+            'member1.required' => 'メンバー1を選択してください。',
         ]);
 
         $work = work::find($id);
         $data = $request->all();
         // dd($data);
 
+        $member1 = member::find($data['member1']);
+        // dd($member->name);
+
+        if(!$data['member2'] == null)
+        {
+            $member2 = member::find($data['member2']);
+            // dd($member2->name);
+            $member2name = $member2->name;
+        }else{
+            $member2name = null;
+        }
+
+        if(!$data['member3'] == null)
+        {
+            $member3 = member::find($data['member3']);
+            // dd($member3->name);
+            $member3name = $member3->name;
+        }else{
+            $member3name = null;
+        }
+
             $work -> name = $data['name'] ;
             $work -> schedule_start = $data['schedule_start'];
             $work -> schedule_end = $data['schedule_end'];
+            $work -> member1 = $data['member1'];
+            $work -> member1_name = $member1->name;
+            $work -> member2 = $data['member2'];
+            $work -> member2_name = $member2name;
+            $work -> member3 = $data['member3'];
+            $work -> member3_name = $member3name;
             $work -> status = $data['status'];
             $work -> memo = $data['memo'];
 

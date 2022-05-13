@@ -56,7 +56,6 @@
                                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                             <!-- TODO: href=" # "にそれぞれルーティングを指定 -->
                                         <li><a class="dropdown-item small" href="{{ route('MemberList') }}">メンバー一覧</a></li>
-                                        <li><a class="dropdown-item small" href="{{ route('PreparationProject') }}">メンバー追加</a></li>
                                     </ul>
                                 </li>
                             </div> <!-- d-flex ms-4 me-2 -->

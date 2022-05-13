@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Project;
 use App\Models\Work;
+use App\Models\Member;
 
 class HomeController extends Controller
 {
@@ -26,9 +27,13 @@ class HomeController extends Controller
     public function index()
     {
         $user = \AUTH::user();
+
         $projects = Project::where('user_id',$user['id'])->orderby('schedule_end','asc')->paginate(15);
+
         $project_box = 'on';
 
-        return view('layouts.app',compact('projects','project_box'));
+        $members = member::where('user_id',$user['id'])->get();
+
+        return view('layouts.app',compact('projects','members','project_box'));
     }
 }
