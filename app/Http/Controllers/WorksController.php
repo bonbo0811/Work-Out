@@ -34,7 +34,6 @@ class WorksController extends Controller
             $project -> save();
         }
 
-
         $user = \AUTH::user(); 
         $members = member::where('user_id',$user['id'])->get();
 
@@ -46,7 +45,9 @@ class WorksController extends Controller
 
         $project_box = 'off';
 
-        return view('workout.home',compact('projects','workslists','project_box','members'));
+        $plan_box = 'on';
+
+        return view('workout.home',compact('projects','workslists','project_box','plan_box','members'));
     }
 
 

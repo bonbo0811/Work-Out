@@ -11,6 +11,9 @@
                     <label for="" class="mb-2 bg-info rounded text-white">　名前　</label><br>
                     {{$member->name}}
                 </div>
+                <div class="mt-1 mb-3">
+                    <a href="{{ route('Member_project_Plan',['id' => $member->id ]) }}" class="btn btn-sm btn-outline-primary">担当プロジェクト & プランの確認</a>
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">キャンセル</button>

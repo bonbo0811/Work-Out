@@ -42,5 +42,6 @@ Route::post('/registmember', [App\Http\Controllers\MembersController::class, 'Re
 Route::get('/editmember/{id}', [App\Http\Controllers\MembersController::class, 'EditMember'])->name('EditMember');
 Route::post('/chengemember/{id}', [App\Http\Controllers\MembersController::class, 'ChangeMember'])->name('ChangeMember');
 Route::post('/deletemember/{id}', [App\Http\Controllers\MembersController::class, 'DeleteMember'])->name('DeleteMember');
+Route::get('/member_project_plan/{id}', [App\Http\Controllers\MembersController::class, 'Member_project_Plan'])->name('Member_project_Plan');
 
 
