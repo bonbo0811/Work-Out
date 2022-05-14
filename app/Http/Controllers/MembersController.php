@@ -97,4 +97,23 @@ class MembersController extends Controller
 
         return redirect()->route('MemberList');
     }
+
+    // 担当プロジェクト、プランを表示
+    public function Member_project_Plan($id)
+    {
+        $member = member::find($id);
+        // dd($member);
+
+        $projects = project::where('member1',$id)->orwhere('member2',$id)->orwhere('member3',$id)->paginate(15);
+        // dd($projects);
+
+        $workslists = work::where('member1',$id)->orwhere('member2',$id)->orwhere('member3',$id)->paginate(15);
+        // dd($projects);
+
+        $project_box = 'off';
+
+        $plan_box = 'off';
+
+        return view('workout.home',compact('projects','project_box','plan_box','workslists'));
+    }
 }

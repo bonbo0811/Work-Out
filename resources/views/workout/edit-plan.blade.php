@@ -62,13 +62,13 @@
                             <div>
                                 <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="member1">
                                     @foreach($projects AS $project)
-                                        <option selected value=" ">未選択</option>
-                                        <option value="{{ $project->member1 }}"{{ old('member1', $plan -> member1) === $project->member1 ? 'selected' : '' }}>{{ $project->member1_name }}</option>
+                                        <option selected value=" " class="text-black-50">未選択</option>
+                                        <option value="{{ $project->member1 }}"{{ old('member1', $plan->member1) === $project->member1 ? 'selected' : '' }}>{{ $project->member1_name }}</option>
                                         @if(!$project->member2 == null)
-                                        <option value="{{ $project->member2 }}"{{ old('member1', $plan -> member1) === $project->member2 ? 'selected' : '' }}>{{ $project->member2_name }}</option>
+                                        <option value="{{ $project->member2 }}"{{ old('member1', $plan->member1) === $project->member2 ? 'selected' : '' }}>{{ $project->member2_name }}</option>
                                         @endif
                                         @if(!$project->member3 == null)
-                                        <option value="{{ $project->member3 }}"{{ old('member1', $plan -> member1) === $project->member3 ? 'selected' : '' }}>{{ $project->member3_name }}</option>
+                                        <option value="{{ $project->member3 }}"{{ old('member1', $plan->member1) === $project->member3 ? 'selected' : '' }}>{{ $project->member3_name }}</option>
                                         @endif
                                     @endforeach
                                 </select>
@@ -82,13 +82,13 @@
                             <div>
                                 <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="member2">
                                     @foreach($projects AS $project)
-                                        <option selected value=" ">未選択</option>
-                                        <option value="{{ $project->member1 }}"{{ old('member2', $plan -> member2) === $project->member1 ? 'selected' : '' }}>{{ $project->member1_name }}</option>
+                                        <option selected value=" " class="text-black-50">未選択</option>
+                                        <option value="{{ $project->member1 }}"{{ old('member2', $plan->member2) === $project->member1 ? 'selected' : '' }}>{{ $project->member1_name }}</option>
                                         @if(!$project->member2 == null)
-                                        <option value="{{ $project->member2 }}"{{ old('member2', $plan -> member2) === $project->member2 ? 'selected' : '' }}>{{ $project->member2_name }}</option>
+                                        <option value="{{ $project->member2 }}"{{ old('member2', $plan->member2) === $project->member2 ? 'selected' : '' }}>{{ $project->member2_name }}</option>
                                         @endif
                                         @if(!$project->member3 == null)
-                                        <option value="{{ $project->member3 }}"{{ old('member2', $plan -> member2) === $project->member3 ? 'selected' : '' }}>{{ $project->member3_name }}</option>
+                                        <option value="{{ $project->member3 }}"{{ old('member2', $plan->member2) === $project->member3 ? 'selected' : '' }}>{{ $project->member3_name }}</option>
                                         @endif
                                     @endforeach
                                 </select>
@@ -97,13 +97,13 @@
                             <div>
                                 <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="member3">
                                     @foreach($projects AS $project)
-                                        <option selected value=" ">未選択</option>
-                                        <option value="{{ $project->member1 }}"{{ old('member3', $plan -> member3) === $project->member1 ? 'selected' : '' }}>{{ $project->member1_name }}</option>
+                                        <option selected value=" " class="text-black-50">未選択</option>
+                                        <option value="{{ $project->member1 }}"{{ old('member3', $plan->member3) === $project->member1 ? 'selected' : '' }}>{{ $project->member1_name }}</option>
                                         @if(!$project->member2 == null)
-                                        <option value="{{ $project->member2 }}"{{ old('member3', $plan -> member3) === $project->member2 ? 'selected' : '' }}>{{ $project->member2_name }}</option>
+                                        <option value="{{ $project->member2 }}"{{ old('member3', $plan->member3) === $project->member2 ? 'selected' : '' }}>{{ $project->member2_name }}</option>
                                         @endif
                                         @if(!$project->member3 == null)
-                                        <option value="{{ $project->member3 }}"{{ old('member3', $plan -> member3) === $project->member3 ? 'selected' : '' }}>{{ $project->member3_name }}</option>
+                                        <option value="{{ $project->member3 }}"{{ old('member3', $plan->member3) === $project->member3 ? 'selected' : '' }}>{{ $project->member3_name }}</option>
                                         @endif
                                     @endforeach
                                 </select>

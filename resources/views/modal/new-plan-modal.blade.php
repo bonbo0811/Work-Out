@@ -42,7 +42,7 @@
                                 <div>
                                     <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="member1">
                                         @foreach($projects AS $project)
-                                            <option selected value=" ">未選択</option>
+                                            <option selected value=" " class="text-black-50">未選択</option>
                                             <option value="{{ $project->member1 }}">{{ $project->member1_name }}</option>
                                             @if(!$project->member2 == null)
                                             <option value="{{ $project->member2 }}">{{ $project->member2_name }}</option>
@@ -62,7 +62,7 @@
                                 <div>
                                     <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="member2">
                                         @foreach($projects AS $project)
-                                            <option selected value=" ">未選択</option>
+                                            <option selected value=" " class="text-black-50">未選択</option>
                                             <option value="{{ $project->member1 }}">{{ $project->member1_name }}</option>
                                             @if(!$project->member2 == null)
                                             <option value="{{ $project->member2 }}">{{ $project->member2_name }}</option>
@@ -77,7 +77,7 @@
                                 <div>
                                     <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="member3">
                                         @foreach($projects AS $project)
-                                            <option selected value=" ">未選択</option>
+                                            <option selected value=" " class="text-black-50">未選択</option>
                                             <option value="{{ $project->member1 }}">{{ $project->member1_name }}</option>
                                             @if(!$project->member2 == null)
                                             <option value="{{ $project->member2 }}">{{ $project->member2_name }}</option>

@@ -48,9 +48,9 @@
                         </label><br>
                         <div>
                             <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="member1">
-                                <option selected value=" ">未選択</option>
+                                <option selected value=" " class="text-black-50">未選択</option>
                                 @foreach($members AS $member)
-                                    <option value="{{ $member->id }}"{{ old('member1', $project -> member1) === $member->id ? 'selected' : '' }}>{{ $member->name }}</option>
+                                    <option value="{{ $member->id }}"{{ old('member1', $project->member1) === $member->id ? 'selected' : '' }}>{{ $member->name }}</option>
                                 @endforeach
                             </select>
                                 @if($errors->has('member1'))
@@ -62,18 +62,18 @@
                         <label for="" class="mt-1">メンバー2</label><br>
                         <div>
                             <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="member2">
-                                <option selected value=" ">未選択</option>
+                                <option selected value=" " class="text-black-50">未選択</option>
                                 @foreach($members AS $member)
-                                    <option value="{{ $member->id }}"{{ old('member2', $project -> member2) === $member->id ? 'selected' : '' }}>{{ $member->name }}</option>
+                                    <option value="{{ $member->id }}"{{ old('member2', $project->member2) === $member->id ? 'selected' : '' }}>{{ $member->name }}</option>
                                 @endforeach
                             </select>
                         </div>
                         <label for="" class="mt-1">メンバー3</label><br>
                         <div>
                             <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="member3">
-                                <option selected value=" ">未選択</option>
+                                <option selected value=" " class="text-black-50">未選択</option>
                                 @foreach($members AS $member)
-                                    <option value="{{ $member->id }}"{{ old('member3', $project -> member3) === $member->id ? 'selected' : '' }}>{{ $member->name }}</option>
+                                    <option value="{{ $member->id }}"{{ old('member3', $project->member3) === $member->id ? 'selected' : '' }}>{{ $member->name }}</option>
                                 @endforeach
                             </select>
                         </div>
