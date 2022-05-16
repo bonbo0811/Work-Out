@@ -24,7 +24,7 @@
     <div id="app">
     <nav class="navbar navbar-expand-md navbar-dark bg-secondary shadow-sm">
             <div class="container">
-                <a class="navbar-brand mb-0 h1" href="{{ url('/') }}">
+                <a class="navbar-brand mb-0 h1 fw-bolder" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -113,7 +113,7 @@
         <div class="row" style='height: 92vh;'>
             <div class="col-md-3 p-0">
                 <div class="card h-100">
-                    <div class="card-header d-flex">Projects<a class='ml-auto'><i class="fas fa-plus-circle"></i></a></div>
+                    <div class="card-header fw-bolder d-flex">Projects<a class='ml-auto'><i class="fas fa-plus-circle"></i></a></div>
                     @if($project_box == 'on')
                         <div class="mt-3 mb-2 text-end">
                             <button class="btn-sm btn btn-outline-secondary me-3" data-bs-toggle="modal" data-bs-target="#RegistProject-modal">新規登録</button>
