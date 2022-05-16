@@ -4,7 +4,7 @@
 
 <div class="col-md-3 p-0">
     <div class="card h-100">
-        <div class="card-header d-flex">ToDo<a class='ml-auto'><i class="fas fa-plus-circle"></i></a></div>
+        <div class="card-header fw-bolder d-flex">ToDo<a class='ml-auto'><i class="fas fa-plus-circle"></i></a></div>
             @if( $plan_box == 'on')
             <div class="mt-3 mb-2 text-end">
                 <button class="btn-sm btn btn-outline-secondary me-3" data-bs-toggle="modal" data-bs-target="#RegistPlan-modal">新規登録</button>
@@ -28,7 +28,7 @@
 
     <div class="col-md-3 p-0">
         <div class="card h-100">
-            <div class="card-header d-flex">Doing</div>
+            <div class="card-header fw-bolder d-flex">Doing</div>
             <div class="card-body py-3 px-4 mt-5 mb-5">
                 @foreach($workslists AS $workslist)
                     @if($workslist->status == 2)
@@ -44,7 +44,7 @@
 
     <div class="col-md-3 p-0">
         <div class="card h-100">
-            <div class="card-header d-flex">Done</div>
+            <div class="card-header fw-bolder d-flex">Done</div>
             <div class="card-body py-3 px-4 mt-5 mb-5">
                 @foreach($workslists AS $workslist)
                     @if($workslist->status == 3)
