@@ -19,7 +19,7 @@
                 <form action="{{ route('ChangeProject',['id' => $project->id]) }}" method="post">
                 @csrf
                     <div class="mb-3">
-                        <label for="" class="mb-2 form-label">プロジェクト名</label>
+                        <label for="" class="mb-2 form-label">プロジェクト名<span class="small text-danger"> 必須</span></label>
                         <input type="text" class="form-control form-control-sm" name="name" value="{{ old('name', $project -> name) }}">
                             @if($errors->has('name'))
                                 @foreach($errors->get('name') as $message)
@@ -28,7 +28,7 @@
                             @endif 
                     </div>
                     <div class="mt-1 mb-3">
-                        <label for="" class="mb-2 form-label">スケジュール</label><br>
+                        <label for="" class="mb-2 form-label">スケジュール<span class="small text-danger"> 必須</span></label><br>
                         <input type="date" name="schedule_start" value="{{ old('schedule_start', $project -> schedule_start) }}">　～　<input type="date" name="schedule_end" value="{{ old('schedule_end',$project ->schedule_end) }}">
                             @if($errors->has('schedule_start'))
                                 @foreach($errors->get('schedule_start') as $message)
@@ -43,9 +43,7 @@
                             @endif 
                     </div>
                     <div class="mt-1 mb-3">
-                        <label for="" class="mt-1">メンバー1
-                                <span class="small text-danger"> 必須</span>
-                        </label><br>
+                        <label for="" class="mt-1">メンバー1<span class="small text-danger"> 必須</span></label><br>
                         <div>
                             <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="member1">
                                 <option selected value=" " class="text-black-50">未選択</option>

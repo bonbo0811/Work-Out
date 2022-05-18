@@ -19,7 +19,7 @@
                 <form action="{{ route('ChangeMember',['id' => $member->id ]) }}" method="post">
                 @csrf
                     <div class="mb-3">
-                        <label for="" class="mb-2 form-label">メンバーの名前</label>
+                        <label for="" class="mb-2 form-label">メンバーの名前<span class="small text-danger"> 必須</span></label>
                         <input type="text" class="form-control form-control-sm" name="name" value="{{ old('name', $member->name) }}">
                             @if($errors->has('name'))
                                 @foreach($errors->get('name') as $message)
