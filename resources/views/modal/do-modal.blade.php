@@ -43,7 +43,7 @@
                 @elseif($workslist->status == 2)
                     <a href="{{ route('EndPlan',['id'=> $workslist->id]) }}" class="btn btn-warning">完了</a>
                 @elseif($workslist->status == 3)
-                    <button type="button" class="btn btn-secondary" disabled>このプランは完了しました</button>
+                    <button type="button" class="btn btn-secondary" disabled>このワークスは完了しました</button>
                 @endif 
                     <a href="{{ route('EditPlan',['id'=> $workslist->id]) }}" class="btn btn-outline-success">編集</a>
             </div>

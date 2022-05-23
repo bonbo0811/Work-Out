@@ -12,7 +12,7 @@
                     {{$member->name}}
                 </div>
                 <div class="mt-1 mb-3">
-                    <a href="{{ route('Member_project_Plan',['id' => $member->id ]) }}" class="btn btn-sm btn-outline-primary">担当プロジェクト & プランの確認</a>
+                    <a href="{{ route('Member_project_Plan',['id' => $member->id ]) }}" class="btn btn-sm btn-outline-primary">担当プロジェクト & ワークスの確認</a>
                 </div>
             </div>
             <div class="modal-footer">
