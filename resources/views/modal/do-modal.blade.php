@@ -1,5 +1,5 @@
 <!-- Modal -->
-<div class="modal fade" id="plan{{ $workslist->id }}" tabindex="-1" aria-labelledby="js-modal" aria-hidden="true">
+<div class="modal fade" id="works{{ $workslist->id }}" tabindex="-1" aria-labelledby="js-modal" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -39,13 +39,13 @@
             </div>
             <div class="modal-footer">
                 @if($workslist->status == 1)
-                    <a href="{{ route('StartPlan',['id'=> $workslist->id]) }}" class="btn btn-primary">開始</a>
+                    <a href="{{ route('StartWorks',['id'=> $workslist->id]) }}" class="btn btn-primary">開始</a>
                 @elseif($workslist->status == 2)
-                    <a href="{{ route('EndPlan',['id'=> $workslist->id]) }}" class="btn btn-warning">完了</a>
+                    <a href="{{ route('EndWorks',['id'=> $workslist->id]) }}" class="btn btn-warning">完了</a>
                 @elseif($workslist->status == 3)
                     <button type="button" class="btn btn-secondary" disabled>このワークスは完了しました</button>
                 @endif 
-                    <a href="{{ route('EditPlan',['id'=> $workslist->id]) }}" class="btn btn-outline-success">編集</a>
+                    <a href="{{ route('EditWorks',['id'=> $workslist->id]) }}" class="btn btn-outline-success">編集</a>
             </div>
         </div>
     </div>

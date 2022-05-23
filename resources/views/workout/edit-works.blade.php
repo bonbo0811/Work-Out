@@ -4,10 +4,10 @@
 
 <div class="col-md-5 p-0">
     <div class="card h-100">
-        <div class="card-header d-flex">{{ $plan ->name }} の編集<a class='ml-auto'><i class="fas fa-plus-circle"></i></a></div>
+        <div class="card-header d-flex">{{ $work ->name }} の編集<a class='ml-auto'><i class="fas fa-plus-circle"></i></a></div>
             <div class="card-body py-2 px-4 mt-1">
                 <div class="mt-1 mb-1 text-end">
-                    <form method="post" action="{{ route('DeletePlan',['id' => $plan->id]) }}">
+                    <form method="post" action="{{ route('DeleteWorks',['id' => $work->id]) }}">
                         @csrf
                         <input type="hidden" name="id">
                         <button type="submit" class="btn-sm btn-warning text-decoration-none me-1">
@@ -16,11 +16,11 @@
                     </form>
                 </div> <!--mt-1 mb-1 text-end-->
 
-                <form action="{{ route('ChangePlan',['id' => $plan->id]) }}" method="post">
+                <form action="{{ route('ChangeWorks',['id' => $work->id]) }}" method="post">
                 @csrf
                     <div class="mb-3">
                         <label for="" class="mb-2 form-label">ワークス名</label>
-                        <input type="text" class="form-control form-control-sm" name="name" value="{{ old('name', $plan -> name) }}">
+                        <input type="text" class="form-control form-control-sm" name="name" value="{{ old('name', $work->name) }}">
                             @if($errors->has('name'))
                                 @foreach($errors->get('name') as $message)
                                     <p class="small text-danger">→ {{ $message }} </p>
@@ -29,7 +29,7 @@
                     </div>
                     <div class="mt-1 mb-3">
                         <label for="" class="mb-2 form-label">スケジュール</label><br>
-                        <input type="date" name="schedule_start" value="{{ old('schedule_start', $plan -> schedule_start) }}">　～　<input type="date" name="schedule_end" value="{{ old('schedule_end', $plan ->schedule_end) }}">
+                        <input type="date" name="schedule_start" value="{{ old('schedule_start', $work->schedule_start) }}">　～　<input type="date" name="schedule_end" value="{{ old('schedule_end', $work->schedule_end) }}">
                             @if($errors->has('schedule_start'))
                                 @foreach($errors->get('schedule_start') as $message)
                                     <p class="small text-danger">→ {{ $message }} </p>
@@ -45,15 +45,15 @@
                     <div class="mt-1 mb-3">
                         <label for="" class="mb-1 form-label">状態</label><br>
                         <div class="form-check form-check-inline">
-                                <input class="form-check-input" id="inlineRadio1" type="radio" name="status" value="1"  {{ $plan->status == 1 ? 'checked' : '' }}>
+                                <input class="form-check-input" id="inlineRadio1" type="radio" name="status" value="1"  {{ $work->status == 1 ? 'checked' : '' }}>
                                 <label class="form-check-label" for="inlineRadio1">ToDo</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" id="inlineRadio2" type="radio" name="status" value="2"  {{ $plan->status == 2 ? 'checked' : '' }}>
+                                <input class="form-check-input" id="inlineRadio2" type="radio" name="status" value="2"  {{ $work->status == 2 ? 'checked' : '' }}>
                                 <label class="form-check-label" for="inlineRadio2">Doing</label>
                             </div>                            
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" id="inlineRadio3" type="radio" name="status" value="3"  {{ $plan->status == 3 ? 'checked' : '' }}>
+                                <input class="form-check-input" id="inlineRadio3" type="radio" name="status" value="3"  {{ $work->status == 3 ? 'checked' : '' }}>
                                 <label class="form-check-label" for="inlineRadio3">Done</label>
                         </div>
                     </div>
@@ -63,12 +63,12 @@
                                 <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="member1">
                                     @foreach($projects AS $project)
                                         <option selected value=" " class="text-black-50">未選択</option>
-                                        <option value="{{ $project->member1 }}"{{ old('member1', $plan->member1) === $project->member1 ? 'selected' : '' }}>{{ $project->member1_name }}</option>
+                                        <option value="{{ $project->member1 }}"{{ old('member1', $work->member1) === $project->member1 ? 'selected' : '' }}>{{ $project->member1_name }}</option>
                                         @if(!$project->member2 == null)
-                                        <option value="{{ $project->member2 }}"{{ old('member1', $plan->member1) === $project->member2 ? 'selected' : '' }}>{{ $project->member2_name }}</option>
+                                        <option value="{{ $project->member2 }}"{{ old('member1', $work->member1) === $project->member2 ? 'selected' : '' }}>{{ $project->member2_name }}</option>
                                         @endif
                                         @if(!$project->member3 == null)
-                                        <option value="{{ $project->member3 }}"{{ old('member1', $plan->member1) === $project->member3 ? 'selected' : '' }}>{{ $project->member3_name }}</option>
+                                        <option value="{{ $project->member3 }}"{{ old('member1', $work->member1) === $project->member3 ? 'selected' : '' }}>{{ $project->member3_name }}</option>
                                         @endif
                                     @endforeach
                                 </select>
@@ -83,12 +83,12 @@
                                 <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="member2">
                                     @foreach($projects AS $project)
                                         <option selected value=" " class="text-black-50">未選択</option>
-                                        <option value="{{ $project->member1 }}"{{ old('member2', $plan->member2) === $project->member1 ? 'selected' : '' }}>{{ $project->member1_name }}</option>
+                                        <option value="{{ $project->member1 }}"{{ old('member2', $work->member2) === $project->member1 ? 'selected' : '' }}>{{ $project->member1_name }}</option>
                                         @if(!$project->member2 == null)
-                                        <option value="{{ $project->member2 }}"{{ old('member2', $plan->member2) === $project->member2 ? 'selected' : '' }}>{{ $project->member2_name }}</option>
+                                        <option value="{{ $project->member2 }}"{{ old('member2', $work->member2) === $project->member2 ? 'selected' : '' }}>{{ $project->member2_name }}</option>
                                         @endif
                                         @if(!$project->member3 == null)
-                                        <option value="{{ $project->member3 }}"{{ old('member2', $plan->member2) === $project->member3 ? 'selected' : '' }}>{{ $project->member3_name }}</option>
+                                        <option value="{{ $project->member3 }}"{{ old('member2', $work->member2) === $project->member3 ? 'selected' : '' }}>{{ $project->member3_name }}</option>
                                         @endif
                                     @endforeach
                                 </select>
@@ -103,12 +103,12 @@
                                 <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="member3">
                                     @foreach($projects AS $project)
                                         <option selected value=" " class="text-black-50">未選択</option>
-                                        <option value="{{ $project->member1 }}"{{ old('member3', $plan->member3) === $project->member1 ? 'selected' : '' }}>{{ $project->member1_name }}</option>
+                                        <option value="{{ $project->member1 }}"{{ old('member3', $work->member3) === $project->member1 ? 'selected' : '' }}>{{ $project->member1_name }}</option>
                                         @if(!$project->member2 == null)
-                                        <option value="{{ $project->member2 }}"{{ old('member3', $plan->member3) === $project->member2 ? 'selected' : '' }}>{{ $project->member2_name }}</option>
+                                        <option value="{{ $project->member2 }}"{{ old('member3', $work->member3) === $project->member2 ? 'selected' : '' }}>{{ $project->member2_name }}</option>
                                         @endif
                                         @if(!$project->member3 == null)
-                                        <option value="{{ $project->member3 }}"{{ old('member3', $plan->member3) === $project->member3 ? 'selected' : '' }}>{{ $project->member3_name }}</option>
+                                        <option value="{{ $project->member3 }}"{{ old('member3', $work->member3) === $project->member3 ? 'selected' : '' }}>{{ $project->member3_name }}</option>
                                         @endif
                                     @endforeach
                                 </select>
@@ -121,10 +121,10 @@
                     </div>
                     <div class="mt-1 mb-4">
                         <label for="" class="mb-2 form-label">コメント</label>
-                        <textarea class="form-control" name="memo" id="exampleFormControlTextarea1" rows="4">{{ old('memo',$plan->memo) }} </textarea>
+                        <textarea class="form-control" name="memo" id="exampleFormControlTextarea1" rows="4">{{ old('memo',$work->memo) }} </textarea>
                     </div>
                     <button type="submit" class="btn btn-primary">編集</button>
-                    <a href="{{ route('SelectProject',['id' => $plan -> project_id] ) }}" class="btn btn-secondary ms-2">戻る</a>
+                    <a href="{{ route('SelectProject',['id' => $work->project_id] ) }}" class="btn btn-secondary ms-2">戻る</a>
                 </form>
             </div>
         </div>

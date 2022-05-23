@@ -10,7 +10,7 @@ use App\Models\Work;
 
 class MembersController extends Controller
 {
-    // （メンバーコントローラー）メンバー一覧
+    // メンバー一覧
     public function MemberList()
     {
         $user = \AUTH::user();
@@ -87,7 +87,7 @@ class MembersController extends Controller
     }
 
 
-    // プラン削除
+    // メンバー削除
     public function DeleteMember(Request $request,$id)
     {
         $member = member::find($id);
@@ -99,7 +99,7 @@ class MembersController extends Controller
     }
 
     // 担当プロジェクト、プランを表示
-    public function Member_project_Plan($id)
+    public function Member_project_Works($id)
     {
         $member = member::find($id);
         // dd($member);
@@ -116,8 +116,8 @@ class MembersController extends Controller
 
         $project_box = 'off';
 
-        $plan_box = 'off';
+        $works_box = 'off';
 
-        return view('workout.home',compact('projects','project_box','plan_box','workslists','project_name'));
+        return view('workout.home',compact('projects','project_box','works_box','workslists','project_name'));
     }
 }

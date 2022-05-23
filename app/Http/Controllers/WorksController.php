@@ -12,7 +12,7 @@ use Illuminate\Validation\Rule;
 
 class WorksController extends Controller
 {
-    // 選択されたプロジェクトのプランを表示
+    // 選択されたプロジェクトのワークスを表示
     public function SelectProject($id)
     {
         $project = project::find($id);
@@ -49,14 +49,14 @@ class WorksController extends Controller
 
         $project_box = 'off';
 
-        $plan_box = 'on';
+        $works_box = 'on';
 
-        return view('workout.home',compact('projects','workslists','project_box','plan_box','members','project_name'));
+        return view('workout.home',compact('projects','workslists','project_box','works_box','members','project_name'));
     }
 
 
-    // 選択プロジェクトの新規プランを作成
-    public function RegistPlan(Request $request)
+    // 選択プロジェクトの新規ワークスを作成
+    public function RegistWorks(Request $request)
     {
         // バリデーション
         $validate = $request ->validate([
@@ -135,7 +135,7 @@ class WorksController extends Controller
 
 
     //works開始
-    public function StartPlan($id)
+    public function StartWorks($id)
     {
         $work = work::find($id);
 
@@ -158,8 +158,8 @@ class WorksController extends Controller
     }
 
 
-    // プラン終了
-    public function EndPlan($id)
+    // ワークス終了
+    public function EndWorks($id)
     {
         $work = work::find($id);
 
@@ -185,13 +185,13 @@ class WorksController extends Controller
     }
 
 
-    // プラン編集画面へ移動
-    public function EditPlan($id)
+    // ワークス編集画面へ移動
+    public function EditWorks($id)
     {
-        $plan = work::find($id);
-        // dd($plan -> project_id);
+        $work = work::find($id);
+        // dd($work -> project_id);
 
-        $projects = project::where('id', $plan -> project_id)->orderby('schedule_end','asc')->paginate(15);
+        $projects = project::where('id', $work -> project_id)->orderby('schedule_end','asc')->paginate(15);
         // dd($projects);
 
         $user = \AUTH::user();
@@ -199,12 +199,12 @@ class WorksController extends Controller
 
         $project_box = 'off';
 
-        return view('workout.edit-plan',compact('plan','projects','project_box','members'));
+        return view('workout.edit-works',compact('work','projects','project_box','members'));
     }
 
 
-    // プランのDB更新
-    public function ChangePlan(Request $request,$id)
+    // ワークスのDB更新
+    public function ChangeWorks(Request $request,$id)
     {
         // バリデーション
         $validate = $request ->validate([
@@ -281,8 +281,8 @@ class WorksController extends Controller
     }
 
 
-    // プラン削除
-    public function DeletePlan(Request $request,$id)
+    // ワークス削除
+    public function DeleteWorks(Request $request,$id)
     {
         $work = work::find($id);
         // dd($work);
