@@ -2,7 +2,7 @@
 <div class="modal fade" id="{{ $id }}" tabindex="-1" aria-labelledby="js-modal" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form action="{{ route('RegistPlan') }}" method="post">
+            <form action="{{ route('RegistWorks') }}" method="post">
             @csrf
                 <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
                 @foreach($projects AS $project)
