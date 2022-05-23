@@ -9,7 +9,7 @@
             <div class="px-4 ms-4 me-4">
                 <p class="fw-bold mb-2">「Work-out」はプロジェクト単位でタスクを管理できるアプリです。</p>
                 <p class="fw-bold mb-2">新規登録後、メンバーを作成し、プロジェクトを開始します。</p>
-                <p class="fw-bold mb-2">作成したプロジェクトには目標期間の設定<br>担当メンバーの割り当て、プランを作りましょう。</p>
+                <p class="fw-bold mb-2">作成したプロジェクトには目標期間の設定<br>担当メンバーの割り当て、ワークスを管理しましょう。</p>
             </div>
             <div class="px-4 mt-3 text-center">
                 <div>
@@ -26,10 +26,10 @@
             <div class="px-4 ms-2 me-2">
                 <h6 class="bg-primary text-light text-center rounded-pill p-1 col-md-3 fw-bold m-auto mb-3">Work-Outの始め方</h6>
                     <div class="m-auto col-md-7">
-                        <p class="mb-2">① 新規登録後、メンバーを作成します。プロジェクトを開始します。</p>
+                        <p class="mb-2">① 新規登録後、メンバーを登録し、プロジェクトを開始します。</p>
                         <p class="mb-2">② プロジェクトを作成</p>
-                        <p class="mb-2">③ 作成したプロジェクトにプランを作成します。</p>
-                        <p class="mb-2">④ プランを選択し、開始→完了することでプロジェクトを完了させましょう！</p>
+                        <p class="mb-2">③ 作成したプロジェクトにワークスを作成します。</p>
+                        <p class="mb-2">④ ワークスを選択し、開始→完了することでプロジェクトを効率よく管理しましょう！</p>
                     </div>
             </div>
         </div>
