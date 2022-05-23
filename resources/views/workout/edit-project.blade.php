@@ -53,7 +53,7 @@
                             </select>
                                 @if($errors->has('member1'))
                                     @foreach($errors->get('member1') as $message)
-                                        <p class="small text-danger">→ {{ $message }} </p>
+                                        <p class="small text-danger mb-1">→ {{ $message }} </p>
                                     @endforeach
                                 @endif 
                         </div>
@@ -65,6 +65,11 @@
                                     <option value="{{ $member->id }}"{{ old('member2', $project->member2) === $member->id ? 'selected' : '' }}>{{ $member->name }}</option>
                                 @endforeach
                             </select>
+                                @if($errors->has('member2'))
+                                    @foreach($errors->get('member2') as $message)
+                                        <p class="small text-danger mb-1">→ {{ $message }} </p>
+                                    @endforeach
+                                @endif
                         </div>
                         <label for="" class="mt-1">メンバー3</label><br>
                         <div>
@@ -74,6 +79,11 @@
                                     <option value="{{ $member->id }}"{{ old('member3', $project->member3) === $member->id ? 'selected' : '' }}>{{ $member->name }}</option>
                                 @endforeach
                             </select>
+                                @if($errors->has('member3'))
+                                    @foreach($errors->get('member3') as $message)
+                                        <p class="small text-danger mb-1">→ {{ $message }} </p>
+                                    @endforeach
+                                @endif
                         </div>
                     </div>
                     <div class="mt-1 mb-4">

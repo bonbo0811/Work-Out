@@ -52,7 +52,9 @@ class ProjectsController extends Controller
             'name' => 'required  | max: 100',
             'schedule_start'=> 'required | ',
             'schedule_end'=> 'required | date | after_or_equal:schedule_start',
-            'member1'=> 'required | ',
+            'member1'=> 'required | different:member2| different:member3',
+            'member2'=>'nullable| different:member1| different:member3',
+            'member3'=>'nullable| different:member1| different:member2',
         ],
         // バリデーションメッセージ
         [
@@ -61,7 +63,10 @@ class ProjectsController extends Controller
             'schedule_start.required' => '開始日：入力は必須です。',
             'schedule_end.required' => '終了日：入力は必須です。',
             'schedule_end.after_or_equal' => '終了日：開始日より後に設定してください。',
-            'member1.required' => 'メンバー1を選択してください。',
+            'member1.required' => 'メンバー１は必須です。',
+            'member1.different' => '同じメンバーが選ばれています。',
+            'member2.different' => '同じメンバーが選ばれています。',
+            'member3.different' => '同じメンバーが選ばれています。',
         ]);
 
         $data = $request->all();
@@ -131,8 +136,9 @@ class ProjectsController extends Controller
             'name' => 'required | string | max: 100',
             'schedule_start'=> 'required | ',
             'schedule_end'=> 'required  | after_or_equal:schedule_start',
-            'member.required' => 'メンバーを選択してください。',
-            'member1'=> 'required | ',
+            'member1'=> 'required | different:member2| different:member3',
+            'member2'=>'nullable| different:member1| different:member3',
+            'member3'=>'nullable| different:member1| different:member2',
         ],
         // バリデーションメッセージ
         [
@@ -141,12 +147,15 @@ class ProjectsController extends Controller
             'schedule_start.required' => '開始日：入力は必須です。',
             'schedule_end.required' => '終了日：入力は必須です。',
             'schedule_end.after_or_equal' => '終了日：開始日より後に設定してください。',
-            'member1.required' => 'メンバー1を選択してください。',
+            'member1.required' => 'メンバー１は必須です。',
+            'member1.different' => '同じメンバーが選ばれています。',
+            'member2.different' => '同じメンバーが選ばれています。',
+            'member3.different' => '同じメンバーが選ばれています。',
         ]);
 
         $project = project::find($id);
         $data = $request->all();
-        // dd($data);
+        dd($data);
 
         $member1 = member::find($data['member1']);
 
