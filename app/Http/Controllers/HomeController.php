@@ -33,6 +33,12 @@ class HomeController extends Controller
         $project_box = 'on';
 
         $members = member::where('user_id',$user['id'])->get();
+        // dd($members);
+
+        if($members -> isEmpty())
+        {
+            return view('workout.tutorial',compact('projects','members','project_box'));
+        }
 
         return view('layouts.app',compact('projects','members','project_box'));
     }

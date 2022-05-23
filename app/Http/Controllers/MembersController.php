@@ -27,7 +27,7 @@ class MembersController extends Controller
     {
         // バリデーション
         $validate = $request ->validate([
-            'name' => 'required  | max: 100',
+            'name' => 'required | max: 100',
         ],
         // バリデーションメッセージ
         [
@@ -108,12 +108,16 @@ class MembersController extends Controller
         // dd($projects);
 
         $workslists = work::where('member1',$id)->orwhere('member2',$id)->orwhere('member3',$id)->paginate(15);
-        // dd($projects);
+        // dd($workslists);
+
+        $project = project::where('member1',$id)->orwhere('member2',$id)->orwhere('member3',$id)->first();
+        $project_name = $project -> name;
+        // dd($project_name);
 
         $project_box = 'off';
 
         $plan_box = 'off';
 
-        return view('workout.home',compact('projects','project_box','plan_box','workslists'));
+        return view('workout.home',compact('projects','project_box','plan_box','workslists','project_name'));
     }
 }

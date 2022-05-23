@@ -43,11 +43,15 @@ class WorksController extends Controller
         $workslists = work::where('project_id',$id)->orderby('schedule_end','asc')->paginate(15);
         // dd($workslists);
 
+        $project = project::find($id);
+        $project_name = $project -> name;
+        // dd($project_name);
+
         $project_box = 'off';
 
         $plan_box = 'on';
 
-        return view('workout.home',compact('projects','workslists','project_box','plan_box','members'));
+        return view('workout.home',compact('projects','workslists','project_box','plan_box','members','project_name'));
     }
 
 
@@ -56,10 +60,12 @@ class WorksController extends Controller
     {
         // バリデーション
         $validate = $request ->validate([
-            'name' => 'required | string | max: 100',
-            'schedule_start'=> 'required | ',
-            'schedule_end'=> 'required  | after_or_equal:schedule_start',
-            'member1'=> 'required | ',
+            'name' => 'required| string| max: 100',
+            'schedule_start'=> 'required| ',
+            'schedule_end'=> 'required| after_or_equal:schedule_start',
+            'member1'=>'required| exists:members,id| different:member2| different:member3',
+            'member2'=>'nullable| exists:members,id| different:member1| different:member3',
+            'member3'=>'nullable| exists:members,id| different:member1| different:member2',
         ],
         // バリデーションメッセージ
         [
@@ -68,7 +74,13 @@ class WorksController extends Controller
             'schedule_start.required' => '開始日：入力は必須です。',
             'schedule_end.required' => '終了日：入力は必須です。',
             'schedule_end.after_or_equal' => '終了日：開始日より後に設定してください。',
-            'member1.required' => '担当者を選択してください。',
+            'member1.required' => 'メンバー１は必須です。',
+            'member1.different' => '同じメンバーが選ばれています。',
+            'member1.exists' => 'そのメンバーは削除されているため選択できません。',
+            'member2.different' => '同じメンバーが選ばれています。',
+            'member2.exists' => 'そのメンバーは削除されているため選択できません。',
+            'member3.different' => '同じメンバーが選ばれています。',
+            'member3.exists' => 'そのメンバーは削除されているため選択できません。',
         ]);
 
         $data = $request->all();
@@ -95,6 +107,10 @@ class WorksController extends Controller
             $member3name = null;
         }
 
+        $project = project::find($data['project_id']);
+        $project_name = $project -> name;
+        // dd($project_name);
+
         $project_id = work::create
         ([
             'name' => $data['name'],
@@ -109,6 +125,7 @@ class WorksController extends Controller
             'memo' => $data['memo'],
             'user_id' => $data['user_id'],
             'project_id' => $data['project_id'],
+            'project_name' => $project_name,
         ]);
 
         $id = $data['project_id'];
@@ -191,10 +208,12 @@ class WorksController extends Controller
     {
         // バリデーション
         $validate = $request ->validate([
-            'name' => 'required | string | max: 100',
-            'schedule_start'=> 'required | ',
-            'schedule_end'=> 'required  | after_or_equal:schedule_start',
-            'member1'=> 'required | ',
+            'name' => 'required| string | max: 100',
+            'schedule_start'=> 'required| ',
+            'schedule_end'=> 'required | after_or_equal:schedule_start',
+            'member1'=>'required| exists:members,id| different:member2| different:member3',
+            'member2'=>'nullable| exists:members,id| different:member1| different:member3',
+            'member3'=>'nullable| exists:members,id| different:member1| different:member2',
         ],
         // バリデーションメッセージ
         [
@@ -203,7 +222,13 @@ class WorksController extends Controller
             'schedule_start.required' => '開始日：入力は必須です。',
             'schedule_end.required' => '狩猟日::入力は必須です。',
             'schedule_end.after_or_equal' => '終了日：開始日より後に設定してください。',
-            'member1.required' => 'メンバー1を選択してください。',
+            'member1.required' => 'メンバー１は必須です。',
+            'member1.different' => '同じメンバーが選ばれています。',
+            'member1.exists' => 'そのメンバーは削除されているため選択できません。',
+            'member2.different' => '同じメンバーが選ばれています。',
+            'member2.exists' => 'そのメンバーは削除されているため選択できません。',
+            'member3.different' => '同じメンバーが選ばれています。',
+            'member3.exists' => 'そのメンバーは削除されているため選択できません。',
         ]);
 
         $work = work::find($id);
