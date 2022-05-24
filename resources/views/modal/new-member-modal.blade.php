@@ -13,6 +13,7 @@
                         <div class="mt-1 mb-3">
                             <label for="" class="mb-2">{{ $name }}の名前</label>
                             <input type="text" class="form-control form-control-sm" name="name" required>
+                            <span class="invalid-feedback">項目を入力してください。</span>
                         </div>
                     </div>
                     <div class="modal-footer">

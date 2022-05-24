@@ -12,11 +12,11 @@
                     <div class="modal-body">
                         <div class="mt-1 mb-3">
                             <label for="" class="mb-2">{{ $name }}名 <span class="small text-danger"> 必須</span></label>
-                            <input type="text" class="form-control form-control-sm" name="name" required>
+                            <input type="text" class="form-control form-control-sm" name="name" value="{{ old('name') }}" required>
                         </div>
                         <div class="mt-1 mb-3">
                             <label for="" class="mb-2">スケジュール <span class="small text-danger"> 必須</span></label><br>
-                            <input type="date" name="schedule_start" required>　～　<input type="date" name="schedule_end" required>
+                            <input type="date" name="schedule_start" value="{{ old('schedule_start') }}" required>　～　<input type="date" name="schedule_end" value="{{ old('schedule_end') }}" required>
                         </div>
                         <div class="mt-1 mb-3">
                             @for($i = 1; $i < 4; $i++)
@@ -29,7 +29,7 @@
                                     <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="member{{ $i }}">
                                         <option selected value=" " class="text-black-50">未選択</option>
                                         @foreach($members AS $member)
-                                            <option value="{{ $member->id }}">{{ $member->name }}</option>
+                                            <option value="{{ old('$member->id') }}">{{ $member->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -37,7 +37,7 @@
                         </div>
                         <div class="mt-1 mb-3">
                             <label for="" class="mb-2">{{ $name }} コメント</label>
-                            <textarea class="form-control"  placeholder="空欄でもOK" name="memo" id="exampleFormControlTextarea1" rows="4"></textarea>
+                            <textarea class="form-control" placeholder="空欄でもOK" name="memo" id="exampleFormControlTextarea1" rows="4">{{ old('memo') }}</textarea>
                         </div>
                     </div>
                     <div class="modal-footer">

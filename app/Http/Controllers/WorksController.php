@@ -76,11 +76,11 @@ class WorksController extends Controller
             'schedule_end.after_or_equal' => '終了日：開始日より後に設定してください。',
             'member1.required' => 'メンバー１は必須です。',
             'member1.different' => '同じメンバーが選ばれています。',
-            'member1.exists' => 'そのメンバーは削除されているため選択できません。',
+            'member1.exists' => 'このメンバーは既に削除されているため選択できません。',
             'member2.different' => '同じメンバーが選ばれています。',
-            'member2.exists' => 'そのメンバーは削除されているため選択できません。',
+            'member2.exists' => 'このメンバーは既に削除されているため選択できません。',
             'member3.different' => '同じメンバーが選ばれています。',
-            'member3.exists' => 'そのメンバーは削除されているため選択できません。',
+            'member3.exists' => 'このメンバーは既に削除されているため選択できません。',
         ]);
 
         $data = $request->all();
@@ -224,11 +224,11 @@ class WorksController extends Controller
             'schedule_end.after_or_equal' => '終了日：開始日より後に設定してください。',
             'member1.required' => 'メンバー１は必須です。',
             'member1.different' => '同じメンバーが選ばれています。',
-            'member1.exists' => 'そのメンバーは削除されているため選択できません。',
+            'member1.exists' => 'このメンバーは既に削除されているため選択できません。',
             'member2.different' => '同じメンバーが選ばれています。',
-            'member2.exists' => 'そのメンバーは削除されているため選択できません。',
+            'member2.exists' => 'このメンバーは既に削除されているため選択できません。',
             'member3.different' => '同じメンバーが選ばれています。',
-            'member3.exists' => 'そのメンバーは削除されているため選択できません。',
+            'member3.exists' => 'このメンバーは既に削除されているため選択できません。',
         ]);
 
         $work = work::find($id);

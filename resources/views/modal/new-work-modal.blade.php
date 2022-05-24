@@ -15,7 +15,7 @@
                     <div class="modal-body">
                         <div class="mt-1 mb-3">
                             <label for="" class="mb-2">{{ $name }}名 <span class="small text-danger"> 必須</span></label>
-                            <input type="text" class="form-control form-control-sm" name="name" required>
+                            <input type="text" class="form-control form-control-sm" name="name" value="{{ old('name') }}" required>
                                 @if($errors->has('name'))
                                     @foreach($errors->get('name') as $message)
                                         <p class="small text-danger">→ {{ $message }} </p>
@@ -24,7 +24,7 @@
                         </div>
                         <div class="mt-1 mb-3">
                             <label for="" class="mb-2">スケジュール <span class="small text-danger"> 必須</span></label><br>
-                            <input type="date" name="schedule_start" required>　～　<input type="date" name="schedule_end" required>
+                            <input type="date" name="schedule_start" value="{{ old('schedule_start') }}" required>　～　<input type="date" name="schedule_end" value="{{ old('schedule_end') }}" required>
                                 @if($errors->has('schedule_start'))
                                     @foreach($errors->get('schedule_start') as $message)
                                         <p class="small text-danger">→ {{ $message }} </p>
@@ -40,15 +40,15 @@
                         <div class="mt-1 mb-3">
                             <label for="" class="mt-1">メンバー1<span class="small text-danger"> 必須</span></label><br>
                                 <div>
-                                    <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="member1">
+                                    <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="member1" value="{{ old('member1') }}" required>
                                         @foreach($projects AS $project)
                                             <option selected value=" " class="text-black-50">未選択</option>
-                                            <option value="{{ $project->member1 }}">{{ $project->member1_name }}</option>
+                                            <option value="{{ $project->member1 }}" @if( $project->member1 === (int)old('member1')) selected @endif>{{ $project->member1_name }}</option>
                                             @if(!$project->member2 == null)
-                                            <option value="{{ $project->member2 }}">{{ $project->member2_name }}</option>
+                                            <option value="{{ $project->member2 }}" @if( $project->member2 === (int)old('member1')) selected @endif>{{ $project->member2_name }}</option>
                                             @endif
                                             @if(!$project->member3 == null)
-                                            <option value="{{ $project->member3 }}">{{ $project->member3_name }}</option>
+                                            <option value="{{ $project->member3 }}" @if( $project->member3 === (int)old('member1')) selected @endif>{{ $project->member3_name }}</option>
                                             @endif
                                         @endforeach
                                     </select>
@@ -60,38 +60,48 @@
                                 </div>
                             <label for="" class="mt-1">メンバー2</label><br>
                                 <div>
-                                    <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="member2">
+                                    <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="member2" value="{{ old('member2') }}">
                                         @foreach($projects AS $project)
                                             <option selected value=" " class="text-black-50">未選択</option>
-                                            <option value="{{ $project->member1 }}">{{ $project->member1_name }}</option>
+                                            <option value="{{ $project->member1 }}" @if( $project->member1 === (int)old('member2')) selected @endif>{{ $project->member1_name }}</option>
                                             @if(!$project->member2 == null)
-                                            <option value="{{ $project->member2 }}">{{ $project->member2_name }}</option>
+                                            <option value="{{ $project->member2 }}" @if( $project->member2 === (int)old('member2')) selected @endif>{{ $project->member2_name }}</option>
                                             @endif
                                             @if(!$project->member3 == null)
-                                            <option value="{{ $project->member3 }}">{{ $project->member3_name }}</option>
+                                            <option value="{{ $project->member3 }}" @if( $project->member3 === (int)old('member2')) selected @endif>{{ $project->member3_name }}</option>
                                             @endif
                                         @endforeach
                                     </select>
+                                        @if($errors->has('member2'))
+                                            @foreach($errors->get('member2') as $message)
+                                                <p class="small text-danger">→ {{ $message }} </p>
+                                            @endforeach
+                                        @endif 
                                 </div>
                             <label for="" class="mt-1">メンバー3</label><br>
                                 <div>
                                     <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="member3">
                                         @foreach($projects AS $project)
                                             <option selected value=" " class="text-black-50">未選択</option>
-                                            <option value="{{ $project->member1 }}">{{ $project->member1_name }}</option>
+                                            <option value="{{ $project->member1 }}" @if( $project->member1 === (int)old('member3')) selected @endif>{{ $project->member1_name }}</option>
                                             @if(!$project->member2 == null)
-                                            <option value="{{ $project->member2 }}">{{ $project->member2_name }}</option>
+                                            <option value="{{ $project->member2 }}" @if( $project->member2 === (int)old('member3')) selected @endif>{{ $project->member2_name }}</option>
                                             @endif
                                             @if(!$project->member3 == null)
-                                            <option value="{{ $project->member3 }}">{{ $project->member3_name }}</option>
+                                            <option value="{{ $project->member3 }}" @if( $project->member3 === (int)old('member3')) selected @endif>{{ $project->member3_name }}</option>
                                             @endif
                                         @endforeach
                                     </select>
+                                        @if($errors->has('member3'))
+                                            @foreach($errors->get('member3') as $message)
+                                                <p class="small text-danger">→ {{ $message }} </p>
+                                            @endforeach
+                                        @endif 
                                 </div>
                         </div>
                         <div class="mt-1 mb-3">
                             <label for="" class="mb-2">{{ $name }} コメント</label>
-                            <textarea class="form-control" placeholder="空欄でもOK" name="memo" id="exampleFormControlTextarea1" rows="4"></textarea>
+                            <textarea class="form-control" placeholder="空欄でもOK" name="memo" id="exampleFormControlTextarea1" rows="4">{{ old('memo') }}</textarea>
                         </div>
                     </div>
                     <div class="modal-footer">
