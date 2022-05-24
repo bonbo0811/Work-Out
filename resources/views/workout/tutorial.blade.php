@@ -24,7 +24,7 @@
                         </div>
                 </div>
                 <div class="p-2 text-center">
-                    <button class="btn btn-outline-secondary me-3" data-bs-toggle="modal" data-bs-target="#RegistMember-modal">メンバーを登録</button>
+                    <button class="btn btn-primary me-3" data-bs-toggle="modal" data-bs-target="#RegistMember-modal">メンバーを登録</button>
                     @include('modal.new-member-modal',['id'=>'RegistMember-modal','name'=>'メンバー'])
                 </div>
             </div>

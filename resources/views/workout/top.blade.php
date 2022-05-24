@@ -13,8 +13,8 @@
             </div>
             <div class="px-4 mt-3 text-center">
                 <div>
-                    <a href="{{ route('login') }}" class="me-1 btn btn-secondary">ログイン</a>
-                    <a href="{{ route('register') }}" class="ms-1 btn btn-secondary">新規登録</a>
+                    <a href="{{ route('login') }}" class="me-1 btn btn-primary">ログイン</a>
+                    <a href="{{ route('register') }}" class="ms-1 btn btn-primary">新規登録</a>
                 </div>
             </div>
         </div>

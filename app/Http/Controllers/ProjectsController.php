@@ -155,7 +155,7 @@ class ProjectsController extends Controller
 
         $project = project::find($id);
         $data = $request->all();
-        dd($data);
+        // dd($data);
 
         $member1 = member::find($data['member1']);
 
