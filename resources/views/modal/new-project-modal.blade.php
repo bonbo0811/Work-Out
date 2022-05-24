@@ -13,10 +13,26 @@
                         <div class="mt-1 mb-3">
                             <label for="" class="mb-2">{{ $name }}名 <span class="small text-danger"> 必須</span></label>
                             <input type="text" class="form-control form-control-sm" name="name" value="{{ old('name') }}" required>
+                                @if($errors->has('name'))
+                                    @foreach($errors->get('name') as $message)
+                                        <p class="small text-danger">→ {{ $message }} </p>
+                                    @endforeach
+                                @endif
                         </div>
                         <div class="mt-1 mb-3">
                             <label for="" class="mb-2">スケジュール <span class="small text-danger"> 必須</span></label><br>
                             <input type="date" name="schedule_start" value="{{ old('schedule_start') }}" required>　～　<input type="date" name="schedule_end" value="{{ old('schedule_end') }}" required>
+                                @if($errors->has('schedule_start'))
+                                    @foreach($errors->get('schedule_start') as $message)
+                                        <p class="small text-danger">→ {{ $message }} </p>
+                                    @endforeach
+                                @endif
+
+                                @if($errors->has('schedule_end'))
+                                    @foreach($errors->get('schedule_end') as $message)
+                                        <p class="small text-danger">→ {{ $message }} </p>
+                                    @endforeach
+                                @endif
                         </div>
                         <div class="mt-1 mb-3">
                             @for($i = 1; $i < 4; $i++)
@@ -29,7 +45,7 @@
                                     <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="member{{ $i }}">
                                         <option selected value=" " class="text-black-50">未選択</option>
                                         @foreach($members AS $member)
-                                            <option value="{{ old('$member->id') }}">{{ $member->name }}</option>
+                                            <option value="{{ ($member->id) }}" @if( $member->id === (int)old('member{{ $i }}')) selected @endif>{{ $member->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
