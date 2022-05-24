@@ -9,7 +9,7 @@
             <div class="modal-body">
                 <div class="mt-1 mb-3">
                     <label for="" class="mb-2 bg-info rounded text-white">　プロジェクト　</label><br>
-                        {{$workslist->project_name}}
+                        <a href="{{ route('SelectProject',['id' => $workslist->project_id]) }}" class="fw-bold">{{$workslist->project_name}}</a>
                 </div>
                 <div class="mt-1 mb-3">
                     <label for="" class="mb-2 bg-info rounded rounded text-white">　スケジュール　</label><br>

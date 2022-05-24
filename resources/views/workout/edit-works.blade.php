@@ -19,7 +19,7 @@
                 <form action="{{ route('ChangeWorks',['id' => $work->id]) }}" method="post">
                 @csrf
                     <div class="mb-3">
-                        <label for="" class="mb-2 form-label">ワークス名</label>
+                        <label for="" class="mb-2 form-label">ワークス名<span class="small text-danger"> 必須</span></label>
                         <input type="text" class="form-control form-control-sm" name="name" value="{{ old('name', $work->name) }}">
                             @if($errors->has('name'))
                                 @foreach($errors->get('name') as $message)
@@ -28,7 +28,7 @@
                             @endif 
                     </div>
                     <div class="mt-1 mb-3">
-                        <label for="" class="mb-2 form-label">スケジュール</label><br>
+                        <label for="" class="mb-2 form-label">スケジュール<span class="small text-danger"> 必須</span></label><br>
                         <input type="date" name="schedule_start" value="{{ old('schedule_start', $work->schedule_start) }}">　～　<input type="date" name="schedule_end" value="{{ old('schedule_end', $work->schedule_end) }}">
                             @if($errors->has('schedule_start'))
                                 @foreach($errors->get('schedule_start') as $message)
@@ -43,7 +43,7 @@
                             @endif 
                     </div>
                     <div class="mt-1 mb-3">
-                        <label for="" class="mb-1 form-label">状態</label><br>
+                        <label for="" class="mb-1 form-label">状態<span class="small text-danger"> 必須</span></label><br>
                         <div class="form-check form-check-inline">
                                 <input class="form-check-input" id="inlineRadio1" type="radio" name="status" value="1"  {{ $work->status == 1 ? 'checked' : '' }}>
                                 <label class="form-check-label" for="inlineRadio1">ToDo</label>

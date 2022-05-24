@@ -26,12 +26,11 @@ Route::get('/executionproject', [App\Http\Controllers\ProjectsController::class,
 Route::get('/completionproject', [App\Http\Controllers\ProjectsController::class, 'CompletionProject'])->name('CompletionProject');
 Route::get('/editproject/{id}', [App\Http\Controllers\ProjectsController::class, 'EditProject'])->name('EditProject');
 Route::post('/changeproject/{id}', [App\Http\Controllers\ProjectsController::class, 'ChangeProject'])->name('ChangeProject');
-Route::get('/selectprolect/{id}', [App\Http\Controllers\WorksController::class, 'SelectProject'])->name('SelectProject');
 Route::post('/deleteproject/{id}', [App\Http\Controllers\ProjectsController::class, 'DeleteProject'])->name('DeleteProject');
 
+Route::get('/selectprolect/{id}', [App\Http\Controllers\WorksController::class, 'SelectProject'])->name('SelectProject');
 Route::post('/registworks', [App\Http\Controllers\WorksController::class, 'RegistWorks'])->name('RegistWorks');
 Route::get('/startworks/{id}', [App\Http\Controllers\WorksController::class, 'StartWorks'])->name('StartWorks');
-Route::get('/endworks/{id}', [App\Http\Controllers\WorksController::class, 'EndWorks'])->name('EndWorks');
 Route::get('/endworks/{id}', [App\Http\Controllers\WorksController::class, 'EndWorks'])->name('EndWorks');
 Route::get('/editworks/{id}', [App\Http\Controllers\WorksController::class, 'EditWorks'])->name('EditWorks');
 Route::post('/changeworks/{id}', [App\Http\Controllers\WorksController::class, 'ChangeWorks'])->name('ChangeWorks');
