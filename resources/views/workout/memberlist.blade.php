@@ -17,6 +17,9 @@
                         @include('modal.member-detail-modal')
                     </div>
                     @endforeach
+                    <div class="mt-4">
+                        {{ $members->links() }}
+                    </div>
                 </div>
             </div>
         </div>

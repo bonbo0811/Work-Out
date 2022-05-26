@@ -54,6 +54,9 @@
                     </div>
                     @endif
                 @endforeach
+                <div class="mt-4">
+                    {{$workslists->links() }}
+                </div>
             </div>
         </div>
     </div>
