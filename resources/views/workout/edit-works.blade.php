@@ -65,10 +65,10 @@
                                         <option selected value=" " class="text-black-50">未選択</option>
                                         <option value="{{ $project->member1 }}" @if($project->member1 === (int)old('member1',$work->member1)) selected @endif>{{ $project->member1_name }}</option>
                                         @if(!$project->member2 == null)
-                                        <option value="{{ $project->member2 }}" @if($project->member2 === (int)old('member1',$work->member1)) selected @endif>>{{ $project->member2_name }}</option>
+                                        <option value="{{ $project->member2 }}" @if($project->member2 === (int)old('member1',$work->member1)) selected @endif>{{ $project->member2_name }}</option>
                                         @endif
                                         @if(!$project->member3 == null)
-                                        <option value="{{ $project->member3 }}" @if($project->member3 === (int)old('member1',$work->member1)) selected @endif>>{{ $project->member3_name }}</option>
+                                        <option value="{{ $project->member3 }}" @if($project->member3 === (int)old('member1',$work->member1)) selected @endif>{{ $project->member3_name }}</option>
                                         @endif
                                     @endforeach
                                 </select>

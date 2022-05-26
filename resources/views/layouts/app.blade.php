@@ -129,7 +129,11 @@
                                 @include('modal.project-detail-modal')
                             </div>
                             @endforeach
+                            <div class="mt-4">
+                                {{ $projects->links() }}
+                            </div>
                         </div>
+                        
                 </div>
             </div>
 

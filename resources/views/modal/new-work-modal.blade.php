@@ -40,7 +40,7 @@
                         <div class="mt-1 mb-3">
                             <label for="" class="mt-1">メンバー1<span class="small text-danger"> 必須</span></label><br>
                                 <div>
-                                    <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="member1" value="{{ old('member1') }}" required>
+                                    <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="member1" required>
                                         @foreach($projects AS $project)
                                             <option selected value=" " class="text-black-50">未選択</option>
                                             <option value="{{ $project->member1 }}" @if( $project->member1 === (int)old('member1')) selected @endif>{{ $project->member1_name }}</option>
@@ -60,7 +60,7 @@
                                 </div>
                             <label for="" class="mt-1">メンバー2</label><br>
                                 <div>
-                                    <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="member2" value="{{ old('member2') }}">
+                                    <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="member2">
                                         @foreach($projects AS $project)
                                             <option selected value=" " class="text-black-50">未選択</option>
                                             <option value="{{ $project->member1 }}" @if( $project->member1 === (int)old('member2')) selected @endif>{{ $project->member1_name }}</option>
