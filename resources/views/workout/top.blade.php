@@ -19,7 +19,7 @@
             </div>
         </div>
         <div style="background-color:#FFFFEE;" class="rounded mt-4 py-3 border col-md-9">
-        <h4 class="fw-bold text-muted ms-5 mt-1 mb-3">Work-Outを始めよう</h4>
+        <h4 class="fw-bold text-muted text-center mt-2 mb-4">Work-Outを始めよう</h4>
             <div class="col-md-8 mt-2 mb-4 m-auto">
                 <img src="{{ asset('images/topimage1.png') }}" class="img-fluid border" alt="Work-Outのイメージ1">
             </div>
