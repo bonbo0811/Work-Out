@@ -22,46 +22,39 @@
 </head>
 <body>
     <div id="app">
-    <nav class="navbar navbar-expand-md navbar-dark bg-secondary shadow-sm">
+        <header class="sticky-top">
+        <nav class="navbar navbar-expand-md navbar-dark bg-secondary shadow-sm">
             <div class="container">
-                <a class="navbar-brand mb-0 h1 fw-bolder" href="{{ url('/') }}">
+                <a class="navbar-brand fw-bolder" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
-                    <div class="collapse navbar-collapse ms-4" id="navbarNav">
-                        <ul class="navbar-nav">
-                            <div class="d-flex ms-auto me-2">
-                                <li class="nav-item dropdown list-unstyled">
-                                    <a class="nav-link dropdown-toggle text-decoration-none" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        PROJECTS
-                                    </a>
-                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                            <!-- TODO: href=" # "にそれぞれルーティングを指定 -->
-                                        <li><a class="dropdown-item small" href="{{ route('home') }}">全てのプロジェクト</a></li>
-                                        <li><a class="dropdown-item small" href="{{ route('PreparationProject') }}">準備中プロジェクト</a></li>
-                                        <li><a class="dropdown-item small" href="{{ route('ExecutionProject') }}">実行中プロジェクト</a></li>
-                                        <li><a class="dropdown-item small" href="{{ route('CompletionProject') }}">完了済プロジェクト</a></li>
-                                    </ul>
-                                </li>
-                                <li class="nav-item dropdown list-unstyled">
-                                    <a class="nav-link dropdown-toggle text-decoration-none" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        MEMBERS
-                                    </a>
-                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                            <!-- TODO: href=" # "にそれぞれルーティングを指定 -->
-                                        <li><a class="dropdown-item small" href="{{ route('MemberList') }}">メンバー一覧</a></li>
-                                    </ul>
-                                </li>
-                            </div> <!-- d-flex ms-4 me-2 -->
-                        </ul>
-                    </div> <!-- collapse navbar-collapse ms-4 -->
-
+                        <li class="nav-item dropdown list-unstyled">
+                            <a class="nav-link dropdown-toggle text-decoration-none" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                PROJECTS
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <!-- TODO: href=" # "にそれぞれルーティングを指定 -->
+                                <li><a class="dropdown-item small" href="{{ route('home') }}">全てのプロジェクト</a></li>
+                                <li><a class="dropdown-item small" href="{{ route('PreparationProject') }}">準備中プロジェクト</a></li>
+                                <li><a class="dropdown-item small" href="{{ route('ExecutionProject') }}">実行中プロジェクト</a></li>
+                                <li><a class="dropdown-item small" href="{{ route('CompletionProject') }}">完了済プロジェクト</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown list-unstyled">
+                            <a class="nav-link dropdown-toggle text-decoration-none" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                MEMBERS
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <!-- TODO: href=" # "にそれぞれルーティングを指定 -->
+                                <li><a class="dropdown-item small" href="{{ route('MemberList') }}">メンバー一覧</a></li>
+                            </ul>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -70,13 +63,13 @@
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                    <a class="nav-link" href="{{ route('login') }}">{{ __('ログイン') }}</a>
                                 </li>
                             @endif
 
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('新規登録') }}</a>
                                 </li>
                             @endif
                         @else
@@ -102,6 +95,7 @@
                 </div>
             </div>
         </nav>
+        </header>
 
         <main class="main">
         @if(session('success'))
