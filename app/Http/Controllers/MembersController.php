@@ -111,13 +111,11 @@ class MembersController extends Controller
         // dd($workslists);
 
         $project = project::where('member1',$id)->orwhere('member2',$id)->orwhere('member3',$id)->first();
-        $project_name = $project -> name;
-        // dd($project_name);
 
         $project_box = 'off';
 
         $works_box = 'off';
 
-        return view('workout.home',compact('projects','project_box','works_box','workslists','project_name'));
+        return view('workout.home',compact('projects','project_box','works_box','workslists',));
     }
 }
