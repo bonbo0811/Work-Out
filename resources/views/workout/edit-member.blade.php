@@ -10,7 +10,7 @@
                     <form action="{{ route('DeleteMember',['id' => $member->id ]) }}" method="post">
                         @csrf
                         <input type="hidden" name="id">
-                        <button type="submit" class="btn-sm btn-warning text-decoration-none me-1">
+                        <button type="submit" class="btn-sm btn-warning text-decoration-none me-1" onClick="delete_alert(event);return false;">
                             削除
                         </button>
                     </form>

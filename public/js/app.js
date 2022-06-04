@@ -1206,3 +1206,12 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ 	
 /******/ })()
 ;
+
+function delete_alert(e)
+{
+    if(!window.confirm('本当に削除しますか？')){
+        window.alert('キャンセルされました'); 
+        return false;
+    }
+    document.deleteform.submit();
+};
