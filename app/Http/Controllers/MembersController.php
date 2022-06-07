@@ -52,11 +52,19 @@ class MembersController extends Controller
     public function EditMember($id)
     {
         $member = member::find($id);
+        // dd($member->user_id);
+
+        $user = \AUTH::user();
+        // dd($user->id);
 
         $projects = project::where('user_id', $member -> user_id)->orderby('schedule_end','asc')->paginate(15);
         // dd($projects);
 
         $project_box = 'off';
+
+        if($user->id !== $member->user_id){
+            return redirect()->route('MemberList');
+        }
 
         return view('workout.edit-member',compact('member','projects','project_box'));
     }

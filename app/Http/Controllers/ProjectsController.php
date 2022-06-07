@@ -122,7 +122,12 @@ class ProjectsController extends Controller
         $project_box = 'off';
 
         $user = \AUTH::user();
+
         $members = member::where('user_id',$user['id'])->get();
+
+        if($user->id !== $project->user_id){
+            return redirect()->route('home');
+        }
 
         return view('workout.edit-project',compact('projects','project','project_box','members'));
     }
