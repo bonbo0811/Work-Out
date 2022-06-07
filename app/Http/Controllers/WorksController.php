@@ -51,6 +51,10 @@ class WorksController extends Controller
 
         $works_box = 'on';
 
+        if($user->id !== $project->user_id){
+            return redirect() -> route('home');
+        }
+
         return view('workout.home',compact('projects','workslists','project_box','works_box','members','project_name'));
     }
 
@@ -198,6 +202,10 @@ class WorksController extends Controller
         $members = member::where('user_id',$user['id'])->get();
 
         $project_box = 'off';
+
+        if($user->id !== $work->user_id){
+            return redirect() -> route('home');
+        }
 
         return view('workout.edit-works',compact('work','projects','project_box','members'));
     }

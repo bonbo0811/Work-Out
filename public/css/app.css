@@ -673,6 +673,7 @@ progress {
   flex-wrap: wrap;
   margin-top: calc(-1 * var(--bs-gutter-y));
 }
+
 .row > * {
   flex-shrink: 0;
   width: 100%;
