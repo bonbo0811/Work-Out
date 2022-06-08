@@ -35,21 +35,48 @@
                                 @endif
                         </div>
                         <div class="mt-1 mb-3">
-                            @for($i = 1; $i < 4; $i++)
-                                <label for="" class="mt-1">メンバー{{ $i }} 
-                                    @if($i == 1)
-                                        <span class="small text-danger"> 必須</span>
-                                    @endif
-                                </label><br>
-                                <div>
-                                    <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="member{{ $i }}">
-                                        <option selected value=" " class="text-black-50">未選択</option>
-                                        @foreach($members AS $member)
-                                            <option value="{{ ($member->id) }}" @if( $member->id === (int)old('member{{ $i }}')) selected @endif>{{ $member->name }}</option>
+                            <label for="" class="mt-1">メンバー1<span class="small text-danger"> 必須</span></label><br>
+                            <div>
+                                <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="member1">
+                                    <option selected value=" " class="text-black-50">未選択</option>
+                                    @foreach($members AS $member)
+                                        <option value="{{ $member->id }}"  @if( $member->id === (int)old('member1')) selected @endif>{{ $member->name }}</option>
+                                    @endforeach
+                                </select>
+                                    @if($errors->has('member1'))
+                                        @foreach($errors->get('member1') as $message)
+                                            <p class="small text-danger mb-1">→ {{ $message }} </p>
                                         @endforeach
-                                    </select>
-                                </div>
-                            @endfor
+                                    @endif 
+                            </div>
+                            <label for="" class="mt-1">メンバー2</label><br>
+                            <div>
+                                <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="member2">
+                                    <option selected value=" " class="text-black-50">未選択</option>
+                                    @foreach($members AS $member)
+                                        <option value="{{ $member->id }}" @if( $member->id === (int)old('member2')) selected @endif>{{ $member->name }}</option>
+                                    @endforeach
+                                </select>
+                                    @if($errors->has('member2'))
+                                        @foreach($errors->get('member2') as $message)
+                                            <p class="small text-danger mb-1">→ {{ $message }} </p>
+                                        @endforeach
+                                    @endif
+                            </div>
+                            <label for="" class="mt-1">メンバー3</label><br>
+                            <div>
+                                <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="member3">
+                                    <option selected value=" " class="text-black-50">未選択</option>
+                                    @foreach($members AS $member)
+                                        <option value="{{ $member->id }}" @if( $member->id === (int)old('member3')) selected @endif>{{ $member->name }}</option>
+                                    @endforeach
+                                </select>
+                                    @if($errors->has('member3'))
+                                        @foreach($errors->get('member3') as $message)
+                                            <p class="small text-danger mb-1">→ {{ $message }} </p>
+                                        @endforeach
+                                    @endif
+                            </div>
                         </div>
                         <div class="mt-1 mb-3">
                             <label for="" class="mb-2">{{ $name }} コメント</label>
